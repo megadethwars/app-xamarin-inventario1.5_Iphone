@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.FormFieldsHistorial"
+             
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout Padding="70,40,70,10">
+                <StackLayout
+            Padding="115,20,115,30">
+                    <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                            FontSize="30"
+			    HorizontalOptions="Center"
+			    Text="BUSQUEDA AVANZADA" 
+			    FontAttributes="Bold"
+			    StyleId="Titulo"/>
+
+                    </Grid>
+
+
+                </StackLayout>
+                <StackLayout>
+
+                    <Label Text="USUARIO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="InUsuario"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Usuario"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="ID Product:"
+                CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="InIDProduct"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca ID"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="MOVIMIENTO:"
+                   TextColor="White"
+                    CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   />
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="InUbicacion"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca ubicacion"
+                   TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="PRODUCTO:"
+                   TextColor="White"
+                    CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="InProd"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA NOMBRE DEL PRODUCTO"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="UBICACION:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="InModel"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA modelo"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="SERIE:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                    
+                 
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="InSerie"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Serie"
+                   TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="Center">
+
+
+
+                    <Button TextColor="Red" ImageSource="baceptar.png" Grid.Column="1" WidthRequest="150" Clicked="OnAccept"></Button>
+                    <Button ImageSource="bcancelar.png" TextColor="Red" Grid.Column="2" WidthRequest="150" Clicked="OnCancel"></Button>
+                </StackLayout>
+
+                <!--
+            <Grid
+                
+                HorizontalOptions="Start"
+                >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+
+                <Button Text="aceptar"  Grid.Column="1" Clicked="OnAccept"></Button>
+                <Button Text="Cancelar"  Grid.Column="2" Clicked="OnCancel"></Button>
+
+            </Grid>
+            -->
+
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

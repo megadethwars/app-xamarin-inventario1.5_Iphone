@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.DetallesProducto"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+           
+
+                <StackLayout
+		Padding="70,10,70,50">
+                    <StackLayout
+            Padding="92,20,92,30">
+                        <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions Width = "100"/>
+                            <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                            
+                            <Label
+                            VerticalOptions="Center"
+                            FontFamily="Montserrat-Bold"
+                            TextColor="White"
+                            FontSize="30"
+			                HorizontalOptions="Center"
+			                Text="DETALLES DEL PRODUCTO" 
+			                FontAttributes="Bold"
+			                StyleId="Titulo"/>
+
+                        </Grid>
+
+
+                    </StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout>
+                        <Label
+			    Text="SERIE:"
+                TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+			    x:Name="idserie"
+                FontSize="Large"
+               
+                FontFamily="Montserrat-Light"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="Codigo QR:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                
+                FontFamily="Montserrat-Light"
+			    x:Name="idCodigo"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                     FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                
+                TextColor="White"
+		        Text="NOMBRE DEL PRODUCTO:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                 FontSize="Large"
+                
+                FontFamily="Montserrat-Light"
+                TextColor="White"
+			    x:Name="nameProd"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="MARCA:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                
+                FontFamily="Montserrat-Light"
+			    x:Name="idmarca"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="MODELO:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+               FontFamily="Montserrat-Light"
+			    x:Name="idmodelo"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="COSTO:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idcosto"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="ORIGEN:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idorigen"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="COMPRA:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idcompra"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="OBSERVACIONES:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idobserv"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="ACCESORIO DE:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idpert"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="DESCOMPOSTURA:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="iddesc"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="PROVEEDOR:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idProv"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="CANTIDAD:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idcantidad"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="LUGAR:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idlugar"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="FECHA:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,0">
+                        <Label
+                TextColor="White"
+                    FontSize="Large"
+                FontFamily="Montserrat-Light"
+			    x:Name="idFecha"
+                StyleId="informacion"/>
+                    </StackLayout>
+
+
+                    <StackLayout>
+                        <Label
+                FontSize="Large"
+                CharacterSpacing="2"
+                FontFamily="Montserrat-Bold"
+                TextColor="White"
+			    Text="FOTO:"
+			    FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Image
+            x:Name="imagen"
+            WidthRequest="150"
+            HeightRequest="100"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Button
+                            Clicked="Button_Clicked_1"
+                            TextColor="Red"
+                            WidthRequest="150"
+                            HeightRequest="87"
+                            ImageSource="bopciones.png"
+                            HorizontalOptions="Start"/>
+                    <Button
+                            TextColor="Red"
+                            WidthRequest="150"
+                            HeightRequest="87"
+                            HorizontalOptions="End"
+                            ImageSource="beliminar.png"
+                                     			
+			                Clicked="Button_Clicked"
+			                StyleId="Ok"/>
+                        
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+                </StackLayout>
+
+            
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             mc:Ignorable="d"
+             x:Class="Inventario2.AgregarEmpleado"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView>
+            <StackLayout
+		Padding="70,10,70,10">
+                <StackLayout
+            Padding="130,20,130,20">
+                    <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                            FontSize="30"
+			    HorizontalOptions="Center"
+			    Text="AGREGAR EMPLEADO" 
+			    FontAttributes="Bold"
+			    StyleId="Titulo"/>
+
+                    </Grid>
+
+
+                </StackLayout>
+
+
+
+                <StackLayout>
+
+                    <Label Text="NOMBRE(S) DEL USUARIO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="nombrEntry"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Nombre(s)"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+
+                    <Label Text="APELLIDO PATERNO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="apepEntry"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Apellido Paterno"
+                   TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout>
+
+                    <Label Text="APELLIDO MATERNO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="apemEntry"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Apellido Paterno"
+                   TextColor="White"/>
+                </StackLayout>
+
+
+                <StackLayout>
+
+                    <Label Text="CONTRASEÑA:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="contra2"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Contraseña"
+                   TextColor="White"/>
+                </StackLayout>
+
+
+                <StackLayout>
+
+                    <Label Text="REITERA TU CONTRASEÑA:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="contraEntry"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Contraseña"
+                   TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout>
+
+                    <Label Text="TELEFONO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="telEntry"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Telefono"
+                   TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout>
+
+                    <Label Text="CORREO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="correoEntry"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Correo"
+                   TextColor="White"/>
+                </StackLayout>
+
+
+                <StackLayout>
+
+                    <Label Text="TIPO DE USUARIO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+
+                    <Picker x:Name="pickerUser"
+                            Title="Selecciona el tipo de usuario"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            TitleColor="White"
+                            SelectedIndexChanged="PickerUser_SelectedIndexChanged">
+                        <Picker.Items>
+                            <x:String>Usuario</x:String>
+                            <x:String>Administrador</x:String>
+                            <x:String>Almacen</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <Button
+		    ImageSource="bfoto.png"
+		    Clicked="Button_Clicked"
+		    HorizontalOptions="Center"
+            
+		    FontAttributes="Bold"
+		    StyleId="Ok"/>
+                <Image
+                        x:Name="imagen"
+                        
+                        HeightRequest="150"
+                        Source="marco de foto.png"
+                        WidthRequest="100"/>
+                <Button
+		    ImageSource="baceptar.png"
+		    Clicked="AgregaEmp"
+		    HorizontalOptions="End"
+            VerticalOptions="End"
+		    FontAttributes="Bold"
+		    StyleId="Ok"/>
+
+            </StackLayout>
+            </ScrollView>
+        </StackLayout>
+            
+    </AbsoluteLayout>
+</ContentPage>

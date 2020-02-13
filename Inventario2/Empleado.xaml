@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             mc:Ignorable="d"
+             x:Class="Inventario2.Empleado"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		    AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            
+                <StackLayout
+                    Padding="270,20,270,30">
+                    <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Image Source="tache.png"
+                               HorizontalOptions="End"
+                               WidthRequest="45"
+                               HeightRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                            FontFamily="Montserrat-Bold"
+                            TextColor="White"
+                            FontSize="30"
+			                HorizontalOptions="Center"
+			                Text="EMPLEADOS" 
+			                FontAttributes="Bold"
+			                StyleId="Titulo"/>
+
+                    </Grid>
+
+
+                </StackLayout>
+            <StackLayout
+		        Padding="70,10,70,10">
+                <SearchBar
+                    TextChanged="search_TextChanged"
+                    BackgroundColor="Gray"
+                    PlaceholderColor="White"
+                    TextColor="White"
+                    x:Name="search"
+                    Placeholder="Buscar por nombre o ID"
+                    CancelButtonColor="Red"
+                    SearchButtonPressed="SearchBarEmp" />
+
+                <Grid
+	             ColumnSpacing="5">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                     Text="Usuario:" 
+                    TextColor="White"
+				     FontAttributes="Bold"
+                     Grid.Column="0"/>
+
+                    <Label
+                    TextColor="White"
+                     Text="Tipo de Usuario:" 
+				     FontAttributes="Bold"
+                     Grid.Column="1"/>
+
+                    <Label
+                    TextColor="White"
+                     Text="Telefono:" 
+				     FontAttributes="Bold"
+                     Grid.Column="2"/>
+                    <Label
+                    TextColor="White"
+                     Text="Correo:" 
+				     FontAttributes="Bold"
+                     Grid.Column="3"/>
+
+                </Grid>
+                <ScrollView
+            VerticalOptions="FillAndExpand"			
+            HorizontalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Grid ColumnSpacing="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="250"/>
+
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding nombre}" TextColor="White" Grid.Column="0"/>
+                                                <Label Text="{Binding tipoUsuario}" TextColor="White" Grid.Column="1"/>
+                                                <Label Text="{Binding telefono}" TextColor="White" Grid.Column="2"/>
+                                                <Label Text="{Binding correo}" TextColor="White" Grid.Column="3"/>
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+
+                <Button
+                    TextColor="Red"
+                    HorizontalOptions="Start"
+                    ImageSource="bingresar.png"
+                    FontAttributes="Bold"
+                    WidthRequest="150"
+                    HeightRequest="87"
+                    StyleId="Ok"
+                    Clicked="AgregarEmp"/>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

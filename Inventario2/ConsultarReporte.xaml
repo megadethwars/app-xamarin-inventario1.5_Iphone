@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.ConsultarReporte">
+    <ContentPage.ToolbarItems>
+        
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="           "></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout
+		Padding="70,20,70,50">
+                <StackLayout
+            Padding="127,20,127,30">
+                    <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions Width = "700"/>
+                        <Image Source="tache.png"
+                               HorizontalOptions="End"
+                               HeightRequest="45"
+                               WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                            FontFamily="Montserrat-Bold"
+                            TextColor="White"
+                            FontSize="30"
+			                HorizontalOptions="Center"
+			                Text="CONSULTAR REPORTE" 
+			                FontAttributes="Bold"
+			                StyleId="Titulo"/>
+                    </Grid>
+                </StackLayout>
+    <StackLayout>
+
+        <ScrollView
+            >
+            <StackLayout>
+                <StackLayout 
+			        Orientation="Horizontal">
+
+                    <Label
+				        FontFamily="Montserrat-Bold"
+                TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+				Text="PRODUCTO:"
+				FontAttributes="Bold"/>
+
+                    <Entry x:Name="nombreID"
+                           BackgroundColor="Gray"
+                           PlaceholderColor="White"
+                           TextColor="White"
+				        HorizontalOptions="FillAndExpand"
+				        Placeholder="Nombre o ID del Producto"
+                        Completed="OnEnterPressed"   />
+
+                </StackLayout>
+
+                <Button
+			        HorizontalOptions="Center"
+			        ImageSource="bscanner.png"
+			        FontAttributes="Bold"			       
+			        Clicked="Scan"/>
+
+
+                <Grid
+	                    ColumnSpacing="10">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        TextColor="White"
+                        Text="Codigo" 
+				        FontAttributes="Bold"
+                        Grid.Column="0"
+				        />
+
+                    <Label
+                        TextColor="White"
+                        Text="Producto" 
+				        FontAttributes="Bold"
+                        Grid.Column="1"
+				        />
+
+                    <Label
+                        TextColor="White"
+                        Text="Serie" 
+				        FontAttributes="Bold"
+                        Grid.Column="2"
+				        />
+                    <Label
+                        TextColor="White"
+                        Text="Marca" 
+				        FontAttributes="Bold"
+                        Grid.Column="3"
+				        />
+
+                    <Label
+                        TextColor="White"
+                        Text="Modelo" 
+				        FontAttributes="Bold"
+                        Grid.Column="4"
+				        />
+
+
+                </Grid>
+
+
+                <ScrollView
+			VerticalOptions="FillAndExpand"
+			>
+                    <StackLayout>
+                        <ListView x:Name="postListView" BackgroundColor="Gray" ItemSelected="PostListView_ItemSelected">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Grid ColumnSpacing="10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding codigo}" TextColor="White" Grid.Column="0"/>
+                                                <Label Text="{Binding producto}" TextColor="White" Grid.Column="1"/>
+                                                <Label Text="{Binding serie}" TextColor="White" Grid.Column="2"/>
+                                                <Label Text="{Binding marca}" TextColor="White" Grid.Column="3"/>
+                                                <Label Text="{Binding modelo}" TextColor="White" Grid.Column="4"/>
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+
+                    </StackLayout>
+                </ScrollView>
+
+
+            </StackLayout>
+        </ScrollView>
+
+
+    </StackLayout>
+</StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+
+
+</ContentPage>

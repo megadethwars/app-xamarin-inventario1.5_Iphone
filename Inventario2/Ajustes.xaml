@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.Ajustes">
+    
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout
+		Padding="70,10,70,10">
+                <StackLayout
+            Padding="230,20,230,20">
+                    <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                            FontFamily="Montserrat-Bold"
+                            TextColor="White"
+                            FontSize="30"
+			                HorizontalOptions="Center"
+			                Text="AJUSTES" 
+			                FontAttributes="Bold"
+			                StyleId="Titulo"/>
+                    </Grid>
+                </StackLayout>
+       
+
+        <StackLayout>
+
+            <Grid
+                ColumnSpacing="30">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    FontFamily="Montserrat-Bold"
+		            HorizontalOptions="Start"
+                    Text="Copia de Seguridad" 
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    CharacterSpacing="4"
+                    TextColor="White"
+                    Grid.Column="0"
+                    Grid.Row="0"/>
+
+                <Switch
+			        IsToggled="True"
+				    Toggled="Copia"
+                    Grid.Column="1"
+                    Grid.Row="0"/>
+
+                <Label
+                    
+                    FontSize="Large"
+                    CharacterSpacing="4"
+                    TextColor="White"
+                    FontFamily="Montserrat-Bold"
+				    HorizontalOptions="Start"
+                    Text="Sincronizacion Automatica" 
+                    FontAttributes="Bold"
+                    Grid.Column="0"
+                    Grid.Row="1"/>
+
+                <Switch
+			        IsToggled="True"
+				    Toggled="Sincronizacion"
+                    Grid.Column="1"
+                    Grid.Row="1"/>
+
+                <Button
+                    FontFamily="Montserrat-Bold"
+                    TextColor="Red"
+		            HorizontalOptions="Start"
+                    Text="Informacion" 
+			        FontAttributes="Bold"
+                    Clicked="Informacion"
+                    Grid.Row="2"
+					Grid.ColumnSpan="2"/>
+
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+</ContentPage>

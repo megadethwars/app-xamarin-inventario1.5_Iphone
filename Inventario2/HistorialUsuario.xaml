@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.HistorialUsuario">
+    
+    <StackLayout
+		Padding="50,20,50,20">
+
+        <StackLayout
+			Padding="0,0,0,50">
+
+            <Label
+				HorizontalOptions="Center"
+				Text="HISTORIAL" 
+				FontAttributes="Bold"
+				StyleId="Titulo"/>
+        </StackLayout>
+
+        <StackLayout
+            Orientation="Horizontal">
+            <Label
+                Text="Desde:" 
+				FontAttributes="Bold"/>
+            <DatePicker
+		        x:Name="desdeU"
+                Format="dd/MM/yyyy"/>
+        </StackLayout>
+
+        <StackLayout
+            Orientation="Horizontal"
+			Padding="0,0,0,20">
+            <Label
+                Text="Hasta:" 
+				FontAttributes="Bold"/>
+            <DatePicker
+		        x:Name="hastaU"
+                Format="dd/MM/yyyy"/>
+        </StackLayout>
+
+        <Grid
+	        ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Text="Producto" 
+				FontAttributes="Bold"
+                Grid.Column="0"
+				Grid.Row="0"/>
+
+            <Label
+                Text="Retiro o ingreso" 
+				FontAttributes="Bold"
+                Grid.Column="1"
+				Grid.Row="0"/>
+        </Grid>
+        <ScrollView
+			VerticalOptions="FillAndExpand"
+			HorizontalOptions="FillAndExpand">
+            <StackLayout>
+                
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

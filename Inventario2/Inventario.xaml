@@ -1,0 +1,215 @@
+﻿<!--<?xml version="1.0" encoding="utf-8" ?>-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+           
+             mc:Ignorable="d"
+             x:Class="Inventario2.Inventario">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout
+		        Padding="70,20,70,20">
+                <StackLayout
+                    Padding="200,0,220,0">
+                    <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions/>
+                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                            FontFamily="Montserrat-Bold"
+                            TextColor="White"
+                            FontSize="30"
+			                HorizontalOptions="Start"
+			                Text="INVENTARIO" 
+			                FontAttributes="Bold"
+			                StyleId="Titulo"/>
+
+                    </Grid>
+                </StackLayout>
+
+                <SearchBar
+                    x:Name="search"
+			        Placeholder="Buscar"
+			        CancelButtonColor="Red"
+                    BackgroundColor="Gray"
+                    PlaceholderColor="White"
+                    TextChanged="search_TextChanged"
+                    TextColor="White"
+			        SearchButtonPressed="SearchBar" />
+
+                <!--<Grid
+                    HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="87"/>
+                    </Grid.RowDefinitions>-->
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand">
+                    <Button
+                        FontAttributes="Bold"
+			            Text="Escanear"
+                        WidthRequest="200"
+                        TextColor="Red"
+                        ImageSource="bscanner.png"
+			            Clicked="Scan"/>
+                    <StackLayout Padding="0,9,0,8">
+                        <Picker x:Name="pickerBuscar"
+                            TitleColor="Red"
+                            Title="TIPO DE BUSQUEDA"
+                            TextColor="White"
+                            
+                            WidthRequest="160"
+                            BackgroundColor="Black"
+                            SelectedIndexChanged="pickerBuscar_SelectedIndexChanged">
+
+                            <Picker.Items>
+                                <x:String>QR</x:String>
+                                <x:String>Nombre</x:String>
+                                <x:String>Marca</x:String>
+                                <x:String>Modelo</x:String>
+                                <x:String>Proveedor</x:String>
+                                <x:String>Serie</x:String>
+                            </Picker.Items>
+                            <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                        </Picker>
+                    </StackLayout>
+                </StackLayout>
+
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout>
+                <Grid
+	         >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                Text="PRODUCTO:" 
+				FontAttributes="Bold"
+                TextColor="White"
+                Grid.Column="0"/>
+
+                    <Label
+                Text="MARCA:" 
+                TextColor="White"
+				FontAttributes="Bold"
+                Grid.Column="1"/>
+                
+                
+                <Label
+                Text="CODIGO QR:" 
+                TextColor="White"
+				FontAttributes="Bold"
+                Grid.Column="2"/>
+                    <Label
+                Text="MODELO:" 
+                TextColor="White"
+				FontAttributes="Bold"
+                Grid.Column="3"/>
+                    <Label
+                Text="SERIE:" 
+                TextColor="White"
+				FontAttributes="Bold"
+                Grid.Column="4"/>
+                    <Label
+                Text="ORIGEN:" 
+                TextColor="White"
+				FontAttributes="Bold"
+                Grid.Column="5"/>
+                    <Label
+                Text="ACCESORIO DE:" 
+                TextColor="White"
+				FontAttributes="Bold"
+                Grid.Column="6"/>
+                    <Label
+                Text="LUGAR:" 
+                TextColor="White"
+				FontAttributes="Bold"
+                Grid.Column="7"/>
+                </Grid>
+
+                <ScrollView
+			HorizontalOptions="FillAndExpand"
+                    
+            VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView x:Name="postListView" ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding nombre}" TextColor="White" Grid.Column="0"/>
+                                                <Label Text="{Binding marca}" TextColor="White"
+                                               Grid.Column="1"/>
+                                                <Label Text="{Binding codigo}" TextColor="White" Grid.Column="2"/>
+                                                <Label Text="{Binding modelo}" TextColor="White" Grid.Column="3"/>
+                                                <Label Text="{Binding serie}" TextColor="White" Grid.Column="4"/>
+                                                <Label Text="{Binding origen}" TextColor="White" Grid.Column="5"/>
+                                                <Label Text="{Binding pertenece}" TextColor="White" Grid.Column="6"/>
+                                                <Label Text="{Binding lugar}" TextColor="White" Grid.Column="7"/>
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+                        </StackLayout>
+                    </ScrollView>
+
+                <Button
+			WidthRequest="150"
+                HeightRequest="87"
+			Clicked="MenuOp"
+			HorizontalOptions="Start"
+            TextColor="Red"
+            ImageSource="bopciones.png"
+			FontAttributes="Bold"
+			StyleId="Ok"/>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

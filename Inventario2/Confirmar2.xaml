@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.Confirmar2"
+             BackgroundImageSource="fondo.png">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout
+		Padding="83,20,83,20">
+                <StackLayout
+            Padding="165,20,160,200">
+                    <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                            FontSize="30"
+			    HorizontalOptions="Center"
+			    Text="CONFIRMACION" 
+			    FontAttributes="Bold"
+			    StyleId="Titulo"/>
+
+                    </Grid>
+
+
+                </StackLayout>
+                <StackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center">
+
+                    <StackLayout
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand" >
+                        <Label Text="Usuario"
+                               FontFamily="Montserrat-Bold"
+                       TextColor="White"
+                   FontAttributes="Bold"/>
+                        <Entry x:Name="Usuario"
+                               BackgroundColor="Gray"
+                               PlaceholderColor="White"
+                               TextColor="White"
+                       Placeholder="Ingrese el usuario"/>
+                        <Label Text="Contraseña"
+                               FontFamily="Montserrat-Bold"
+                       TextColor="White"
+                   FontAttributes="Bold"/>
+                        <Entry x:Name="Contra"
+                               BackgroundColor="Gray"
+                               PlaceholderColor="White"
+                               TextColor="White"
+                       IsPassword="True"
+                       Placeholder="Ingrese la Contraseña"/>
+                        
+                        <Button Clicked="Button_Clicked"
+                        TextColor="Red"
+                        ImageSource="baceptar.png"></Button>
+                    </StackLayout>
+
+
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

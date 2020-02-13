@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Inventario2.EditarProducto">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout Padding="70,40,70,10">
+                <StackLayout
+            Padding="100,10,100,10">
+                    <Grid ColumnSpacing="0"
+                          HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Image Source="tache.png"
+                               HorizontalOptions="End"
+                               HeightRequest="45"
+                               WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                            FontFamily="Montserrat-Bold"
+                            TextColor="White"
+                            FontSize="30"
+			                HorizontalOptions="Center"
+			                Text="EDITAR PRODUCTO" 
+			                FontAttributes="Bold"
+			                StyleId="Titulo"/>
+
+                    </Grid>
+
+
+                </StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout>
+
+                    <Label Text="PRODUCTO:"
+               CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idProducto"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Nombre"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="SERIE"
+                CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idSerie"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Serie"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="CODIGO QR:"
+                   TextColor="White"
+                    CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"
+                   />
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idCodigo"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="Introduzca Codigo QR"
+                   TextColor="White"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="MARCA:"
+                   TextColor="White"
+                    CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idMarca"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA MARCA"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="MODELO:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idModelo"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA MODELO"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="COSTO" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idCosto"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA COSTO"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="ORIGEN:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idOrigen"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA ORIGEN"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="COMPRA:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idCompra"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA Compra"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="ACCESORIO:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idAcces"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA ACCESORIO"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="DESCOMPOSTURA:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idDesc"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA DESCOMPOSTURA"
+                   TextColor="White"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="PROVEEDOR:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+                    <Entry Text="" x:Name="idProveedor"
+                   BackgroundColor="Gray"
+                   PlaceholderColor="White"
+                   Placeholder="INTRODUZCA PROVEEDOR"
+                   TextColor="White"/>
+                </StackLayout>
+                    <StackLayout>
+                        <Button
+                            ImageSource="baceptar.png"
+                            Clicked="Button_Clicked"
+                            HorizontalOptions="End"
+                            WidthRequest="150"
+                            HeightRequest="87"/>
+                    </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+                </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+</ContentPage>

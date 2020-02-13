@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.DetallesReporte">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+        
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="             " />
+        <ToolbarItem Text="            " />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="AspectFill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout
+		Padding="70,10,70,10">
+                <StackLayout
+            Padding="93,20,93,20">
+                    <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Label
+                            VerticalOptions="Center"
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                            FontSize="30"
+			    HorizontalOptions="Center"
+			    Text="DETALLES DEL PRODUCTO" 
+			    FontAttributes="Bold"
+			    StyleId="Titulo"/>
+
+                    </Grid>
+
+
+                </StackLayout>
+                <StackLayout>
+                        <Label
+            FontFamily="Montserrat-Bold"
+		    Text="NOMBRE DEL PRODUCTO:"
+            TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+			FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,20">
+                        <Label
+            FontFamily="Montserrat-Light"
+                            FontSize="Large"
+			x:Name="nameProd"
+            TextColor="White"
+                
+            StyleId="informacion"/>
+                    </StackLayout>
+
+     <StackLayout>
+                        <Label
+            FontFamily="Montserrat-Bold"
+		    Text="ID CODIGO:"
+            TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+			FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,20">
+                        <Label
+            FontFamily="Montserrat-Light"
+                            FontSize="Large"
+			x:Name="idcodigo"
+            TextColor="White"
+                
+            StyleId="informacion"/>
+                    </StackLayout>
+       
+
+
+        <StackLayout>
+                        <Label
+            FontFamily="Montserrat-Bold"
+		    Text="MARCA:"
+            TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+			FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,20">
+                        <Label
+            FontFamily="Montserrat-Light"
+                            FontSize="Large"
+			x:Name="idmarca"
+            TextColor="White"
+                
+            StyleId="informacion"/>
+                    </StackLayout>
+
+
+        <StackLayout>
+                        <Label
+            FontFamily="Montserrat-Bold"
+		    Text="MODELO:"
+            TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+			FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,20">
+                        <Label
+            FontFamily="Montserrat-Light"
+                            FontSize="Large"
+			x:Name="idmodelo"
+            TextColor="White"
+                
+            StyleId="informacion"/>
+                    </StackLayout>
+
+
+        <StackLayout>
+                        <Label
+            FontFamily="Montserrat-Bold"
+		    Text="SERIE:"
+            TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+			FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,20">
+                        <Label
+            FontFamily="Montserrat-Light"
+                            FontSize="Large"
+			x:Name="idSerie"
+            TextColor="White"
+                
+            StyleId="informacion"/>
+                    </StackLayout>
+
+
+        <StackLayout>
+                        <Label
+            FontFamily="Montserrat-Bold"
+		    Text="OBSERVACIONES:"
+            TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+			FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Padding="40,0,20,20">
+                        <Label
+            FontFamily="Montserrat-Light"
+                            FontSize="Large"
+			x:Name="idobserv"
+            TextColor="White"
+                
+            StyleId="informacion"/>
+                    </StackLayout>
+
+
+        <StackLayout>
+                        <Label
+            FontFamily="Montserrat-Bold"
+		    Text="FOTO:"
+            TextColor="White"
+                FontSize="Large"
+                CharacterSpacing="4"
+			FontAttributes="Bold"/>
+            </StackLayout>
+        <Image
+            x:Name="imagen"
+            WidthRequest="200"
+            HeightRequest="200"/>
+        <Button
+            
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+			ImageSource="baceptar.png"
+			Clicked="OnAccept"
+			StyleId="Ok"/>
+    </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+</ContentPage>
