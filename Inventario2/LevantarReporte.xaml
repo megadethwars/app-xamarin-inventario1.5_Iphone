@@ -12,35 +12,33 @@
         <ToolbarItem Text="HOME"  Clicked="ToolbarItem_Clicked" />
         <ToolbarItem Text="              " />
         <ToolbarItem Text="              " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="           " />
-        <ToolbarItem Text="           "></ToolbarItem>
+        
         
     </ContentPage.ToolbarItems>
 
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             
                 <StackLayout
-		            Padding="50,10,50,50">
+		            Padding="35,10,35,50">
                     <StackLayout
-                        Padding="243,20,243,20">
+                        Padding="0,20,0,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png"
                                HorizontalOptions="End"
-                               HeightRequest="45"
-                               WidthRequest="45"/>
+                               HeightRequest="60"
+                               WidthRequest="60"/>
                         <Label
                             HorizontalOptions="Start"
                             VerticalOptions="Center"
                             FontFamily="Montserrat-Bold"
                             TextColor="White"
-                            FontSize="30"
+                            FontSize="27"
 			                
 			                Text="LEVANTAR REPORTE" 
 			                FontAttributes="Bold"
@@ -55,22 +53,21 @@
         
 
         <ScrollView>
-            <StackLayout Padding="30,20,30,20">
+            <StackLayout Padding="0,20,0,20">
                 <StackLayout 
 			        Orientation="Horizontal">
 
-                    <Label
-				        Text="Producto:"
-                        FontFamily="Montserrat-Bold"
-                        TextColor="White"
-                        FontSize="Large"
-                        CharacterSpacing="4"
-				        FontAttributes="Bold"/>
+                    
+                    <SearchBar x:Name="nombreID"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    PlaceholderColor="White"
+			        Placeholder="Buscar por nombre o ID"
+			        CancelButtonColor="Red"
+			        SearchButtonPressed="searchbar_SearchButtonPressed"
+                        ></SearchBar>
 
-                    <Entry x:Name="nombreID"
-				        HorizontalOptions="FillAndExpand"
-				        Placeholder="Nombre o ID del Producto"
-                        Completed="OnEnterPressed"   />
+                    
 
                 </StackLayout>
 
@@ -231,6 +228,7 @@
 				        ImageSource="bopciones.png"
 				        Clicked="Consultar_Reporte"
 				        HorizontalOptions="Start"
+                        WidthRequest="150"
 				        FontAttributes="Bold"
 				        StyleId="Ok"/>
 
@@ -239,6 +237,7 @@
 				        ImageSource="baceptar.png"
 				        Clicked="Enviar_Reporte"
 				        HorizontalOptions="End"
+                        WidthRequest="150"
 				        FontAttributes="Bold"
 				        StyleId="Ok"/>
                 </StackLayout>

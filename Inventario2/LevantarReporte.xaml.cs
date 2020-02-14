@@ -130,11 +130,7 @@ namespace Inventario2
 
         private async void OnEnterPressed(object sender, EventArgs e)
         {
-            if (nombreID != null)
-            {
-                List<InventDB> tabladevice = await QueryDevice(nombreID.Text);
-                fillDevice(tabladevice);
-            }
+           
         }
         private async void Enviar_Reporte(object sender, EventArgs e)
         {
@@ -242,6 +238,15 @@ namespace Inventario2
         void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
         {
             Navigation.PopAsync();
+        }
+
+        async void searchbar_SearchButtonPressed(System.Object sender, System.EventArgs e)
+        {
+            if (nombreID != null)
+            {
+                List<InventDB> tabladevice = await QueryDevice(nombreID.Text);
+                fillDevice(tabladevice);
+            }
         }
     }
 }

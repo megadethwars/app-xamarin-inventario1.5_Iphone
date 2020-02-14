@@ -10,22 +10,21 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
         
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        <ToolbarItem Text="                " />
+        <ToolbarItem Text="                " />
+        
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
 		Padding="70,20,70,20">
                 <StackLayout
-            Padding="220,20,220,20">
+            Padding="25,20,25,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -61,7 +60,7 @@
                 
 				FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout Padding="40,0,20,20">
+                <StackLayout Padding="10,0,10,20">
                     <Label
                  FontFamily="Montserrat-Light"
                         FontSize="Large"
@@ -82,7 +81,7 @@
 				Text="TIPO DE EMPLEADO:"
 				FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout Padding="40,0,20,20">
+                <StackLayout Padding="10,0,10,20">
                     <Label
                  FontFamily="Montserrat-Light"
                        
@@ -103,7 +102,7 @@
 				Text="TELEFONO:"
 				FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout Padding="40,0,20,20">
+                <StackLayout Padding="10,0,10,20">
                     <Label
                  FontFamily="Montserrat-Light"
                 FontSize="Large"
@@ -122,7 +121,7 @@
 				Text="CORREO:"
 				FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout Padding="40,0,20,20">
+                <StackLayout Padding="10,0,0,20">
                     <Label
                 FontSize="Large"
                 

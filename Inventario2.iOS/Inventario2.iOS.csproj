@@ -32,6 +32,7 @@
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <CodesignEntitlements />
+    <MtouchSdkVersion>13.2</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -93,6 +94,7 @@
     </BundleResource>
     <BundleResource Include="Resources\Montserrat-Light.otf" />
     <Compile Include="MessageIOS.cs" />
+    <BundleResource Include="Resources\nuevofondo.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -226,9 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\fondochido.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\nuevofondo.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tache.png" />

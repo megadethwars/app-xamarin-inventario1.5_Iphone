@@ -7,17 +7,17 @@
              x:Class="Inventario2.MainPage"        
              >
 
-    <AbsoluteLayout VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
+    <AbsoluteLayout VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand">
         <Image x:Name="fondo" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		    AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="70,20,70,50">
+            <StackLayout Padding="35,20,35,50">
                 <StackLayout
-                    Padding="179,20,179,170">
+                    Padding="17,20,17,170">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
-                        <Grid.ColumnDefinitions Width = "100"/>
+                        <Grid.ColumnDefinitions />
                         <Image Source="tache.png"
                                HorizontalOptions="End"
                                HeightRequest="45"

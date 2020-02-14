@@ -9,25 +9,23 @@
              x:Class="Inventario2.Inventario">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        <ToolbarItem Text="                " />
+        <ToolbarItem Text="                " />
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
-		        Padding="70,20,70,20">
+		        Padding="20,20,20,20">
                 <StackLayout
-                    Padding="200,0,220,0">
+                    Padding="59,0,59,0">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
-                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Image Aspect="AspectFit" Source="tache.png" HorizontalOptions="End" HeightRequest="60" WidthRequest="60"/>
                         <Label
                             VerticalOptions="Center"
                             FontFamily="Montserrat-Bold"
@@ -63,7 +61,7 @@
 
                 <StackLayout
                     Orientation="Horizontal"
-                    HorizontalOptions="CenterAndExpand">
+                    HorizontalOptions="StartAndExpand">
                     <Button
                         FontAttributes="Bold"
 			            Text="Escanear"
@@ -71,14 +69,16 @@
                         TextColor="Red"
                         ImageSource="bscanner.png"
 			            Clicked="Scan"/>
-                    <StackLayout Padding="0,9,0,8">
+                    <StackLayout Padding="0,9,50,8">
                         <Picker x:Name="pickerBuscar"
                             TitleColor="Red"
                             Title="TIPO DE BUSQUEDA"
-                            TextColor="White"
-                            
-                            WidthRequest="160"
-                            BackgroundColor="Black"
+                            TextColor="Red"
+                            FontFamily="Montserrat-Bold"
+                            WidthRequest="140"
+                                HeightRequest="40"
+                                
+                            BackgroundColor="Transparent"
                             SelectedIndexChanged="pickerBuscar_SelectedIndexChanged">
 
                             <Picker.Items>
