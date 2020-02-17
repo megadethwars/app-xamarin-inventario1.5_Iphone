@@ -8,34 +8,32 @@
     <ContentPage.ToolbarItems>
         
         <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked"/>
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="           "></ToolbarItem>
+        <ToolbarItem Text="               " />
+        
+        <ToolbarItem Text="              "></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
-		Padding="70,20,70,50">
+		Padding="37,20,37,50">
                 <StackLayout
-            Padding="127,20,127,30">
+            Padding="0,20,0,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "700"/>
                         <Image Source="tache.png"
                                HorizontalOptions="End"
-                               HeightRequest="45"
-                               WidthRequest="45"/>
+                               HeightRequest="60"
+                               WidthRequest="60"/>
                         <Label
                             VerticalOptions="Center"
                             FontFamily="Montserrat-Bold"
                             TextColor="White"
-                            FontSize="30"
+                            FontSize="25"
 			                HorizontalOptions="Center"
 			                Text="CONSULTAR REPORTE" 
 			                FontAttributes="Bold"
@@ -50,23 +48,16 @@
                 <StackLayout 
 			        Orientation="Horizontal">
 
-                    <Label
-				        FontFamily="Montserrat-Bold"
-                TextColor="White"
-                FontSize="Large"
-                CharacterSpacing="4"
-				Text="PRODUCTO:"
-				FontAttributes="Bold"/>
+                                <SearchBar x:Name="nombreID"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    PlaceholderColor="White"
+			        Placeholder="Buscar por nombre o ID"
+			        CancelButtonColor="Red"
+			        SearchButtonPressed="nombreID_SearchButtonPressed"
+                        ></SearchBar>
 
-                    <Entry x:Name="nombreID"
-                           BackgroundColor="Gray"
-                           PlaceholderColor="White"
-                           TextColor="White"
-				        HorizontalOptions="FillAndExpand"
-				        Placeholder="Nombre o ID del Producto"
-                        Completed="OnEnterPressed"   />
-
-                </StackLayout>
+                            </StackLayout>
 
                 <Button
 			        HorizontalOptions="Center"

@@ -20,7 +20,7 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
-		Padding="83,20,83,20">
+		Padding="60,20,60,20">
                 <StackLayout
             Padding="0,20,0,200">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">

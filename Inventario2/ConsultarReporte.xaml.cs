@@ -54,61 +54,7 @@ namespace Inventario2
         }
 
 
-        private async void OnEnterPressed(object sender, EventArgs e)
-        {
-            if (nombreID != null)
-            {
-                //consulta de reportes y llenado en tabla
-                int length = nombreID.Text.Length - 2;
-                string buscador = nombreID.Text.Substring(2, length);
-
-                //tryparse
-                try
-                {
-                    int testInt = Int32.Parse(buscador);
-                    isInt = true;
-
-                }
-                catch
-                {
-                    isInt = false;
-                }
-
-                try
-                {
-                    if (isInt)
-                    {
-                        List<Model.Reportes> listareportes = await QueryReport(nombreID.Text);
-
-                        if (listareportes.Count != 0)
-                        {
-                            postListView.ItemsSource = listareportes;
-                        }
-                        else
-                        {
-                            await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
-                        }
-                    }
-                    else
-                    {
-                        List<Model.Reportes> listareportes = await QueryReportByName(nombreID.Text);
-
-                        if (listareportes.Count != 0)
-                        {
-                            postListView.ItemsSource = listareportes;
-                        }
-                        else
-                        {
-                            await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
-                        }
-                    }
-                }
-                catch
-                {
-
-                }
-            }
-        }
+       
 
         private void Scan(object sender, EventArgs e)
         {
@@ -177,6 +123,60 @@ namespace Inventario2
             Navigation.PopAsync();
         }
 
+        private async void nombreID_SearchButtonPressed(object sender, EventArgs e)
+        {
+            if (nombreID != null)
+            {
+                //consulta de reportes y llenado en tabla
+                int length = nombreID.Text.Length - 2;
+                string buscador = nombreID.Text.Substring(2, length);
 
+                //tryparse
+                try
+                {
+                    int testInt = Int32.Parse(buscador);
+                    isInt = true;
+
+                }
+                catch
+                {
+                    isInt = false;
+                }
+
+                try
+                {
+                    if (isInt)
+                    {
+                        List<Model.Reportes> listareportes = await QueryReport(nombreID.Text);
+
+                        if (listareportes.Count != 0)
+                        {
+                            postListView.ItemsSource = listareportes;
+                        }
+                        else
+                        {
+                            await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
+                        }
+                    }
+                    else
+                    {
+                        List<Model.Reportes> listareportes = await QueryReportByName(nombreID.Text);
+
+                        if (listareportes.Count != 0)
+                        {
+                            postListView.ItemsSource = listareportes;
+                        }
+                        else
+                        {
+                            await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+        }
     }
 }

@@ -46,8 +46,7 @@
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        
                     </Grid.ColumnDefinitions>
 
                     <Label
@@ -63,18 +62,7 @@
                 Text="Marca:" 
 				FontAttributes="Bold"
                 Grid.Column="1"/>
-                    <Label
-                        FontFamily="Montserrat-Bold"
-                TextColor="White"
-                Text="Modelo:" 
-				FontAttributes="Bold"
-                Grid.Column="2"/>
-                    <Label
-                        FontFamily="Montserrat-Bold"
-                TextColor="White"
-                Text="Cantidad:" 
-				FontAttributes="Bold"
-                Grid.Column="3"/>
+                    
                 </Grid>
 
                 <ScrollView>
@@ -89,16 +77,14 @@
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="100"/>
+                                                
 
                                             </Grid.ColumnDefinitions>
 
                                             <Label  Text="{Binding producto}" TextColor="White" Grid.Column="0"/>
                                             <Label Text="{Binding marca}" TextColor="White" Grid.Column="1"/>
-                                            <Label Text="{Binding modelo}" TextColor="White" Grid.Column="2"/>
-                                            <Label Text="{Binding cantidad}" TextColor="White" Grid.Column="3"/>
-                                            <Button ImageSource="beliminar.png" HeightRequest="70" Clicked="Button_Clicked" Grid.Column="4"/>
+                                            
+                                            <Button ImageSource="beliminar.png" HeightRequest="70" Clicked="Button_Clicked" Grid.Column="2"/>
 
                                         </Grid>
                                     </StackLayout>
