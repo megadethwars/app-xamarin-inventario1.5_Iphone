@@ -9,7 +9,7 @@ namespace Inventario2
     public partial class App : Application
     {
         public static string DtabaseLocation = string.Empty;
-        public static MobileServiceClient MobileService = new MobileServiceClient("https://inventarioavs.azurewebsites.net");
+        public static MobileServiceClient MobileService = new MobileServiceClient("https://avsinventario.azurewebsites.net");
         public App()
         {
             InitializeComponent();

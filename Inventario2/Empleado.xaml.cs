@@ -25,9 +25,9 @@ namespace Inventario2
         {
             base.OnAppearing();
             
-            //var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
+            var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
         
-            //postListView.ItemsSource = usuarios;
+            postListView.ItemsSource = usuarios;
         }
         private async void SearchBarEmp(object sender, EventArgs e)
         {

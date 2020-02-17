@@ -31,7 +31,7 @@ namespace Inventario2
 
         private async void IniciarSesion(object sender, EventArgs e)
         {
-            /* Boolean password = false;
+             Boolean password = false;
              try
              {
                  if (nameEntry.Text != null && passEntry.Text != null)
@@ -64,13 +64,8 @@ namespace Inventario2
                  await DisplayAlert("Error", "Error de Conexion con el Servidor", "Aceptar");
              }
 
-             */
-            Usuario n = new Usuario()
-            {
-                tipoUsuario = "Administrador",
-                nombre ="omar"
-            };
-            await Navigation.PushAsync(new Menu(n));
+             
+            
         }
     }
 }
