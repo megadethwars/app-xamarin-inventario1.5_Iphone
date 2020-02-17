@@ -11,20 +11,18 @@
         
         <ToolbarItem Text="             " />
         <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
 		Padding="83,20,83,20">
                 <StackLayout
-            Padding="165,20,160,200">
+            Padding="0,20,0,200">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>

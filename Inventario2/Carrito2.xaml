@@ -9,9 +9,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME"  Clicked="ToolbarItem_Clicked_1"/>
         <ToolbarItem Text="          " />
-        <ToolbarItem Text="          " />
-        <ToolbarItem Text="          " />
-        <ToolbarItem Text="          " />
+        
         <ToolbarItem Text="Borrar Carrito" Clicked="ToolbarItem_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"

@@ -12,19 +12,18 @@
         
         <ToolbarItem Text="             " />
         <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        <ToolbarItem Text="     " />
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="70,40,70,10">
+            <StackLayout Padding="37,40,37,10">
                 <StackLayout
-            Padding="115,20,115,30">
+            Padding="0,20,0,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -32,7 +31,7 @@
                             VerticalOptions="Center"
                  FontFamily="Montserrat-Bold"
                 TextColor="White"
-                            FontSize="30"
+                            FontSize="25"
 			    HorizontalOptions="Center"
 			    Text="BUSQUEDA AVANZADA" 
 			    FontAttributes="Bold"
