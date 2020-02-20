@@ -4,6 +4,7 @@
 <dict>
 	<key>UIDeviceFamily</key>
 	<array>
+		<integer>1</integer>
 		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
@@ -41,5 +42,7 @@
 	<string>This app needs access to microphone.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app needs access to the photo gallery.</string>
+	<key>MinimumOSVersion</key>
+	<string>12.4</string>
 </dict>
 </plist>

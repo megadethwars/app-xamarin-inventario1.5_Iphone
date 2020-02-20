@@ -9,24 +9,22 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME"  Clicked="ToolbarItem_Clicked_1" />
         <ToolbarItem Text="          " />
-        <ToolbarItem Text="          " />
-        <ToolbarItem Text="          " />
-        <ToolbarItem Text="          " />
+        
         <ToolbarItem Text="Borrar Carrito" Clicked="ToolbarItem_Clicked"></ToolbarItem>
 
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="70,20,70,50">
+            <StackLayout Padding="37,20,37,40">
                 <StackLayout
-            Padding="233,20,233,30">
+            Padding="88,20,88,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
-                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                        <Image Source="tache.png" HorizontalOptions="End" HeightRequest="55" WidthRequest="55"/>
                         <Label
                             VerticalOptions="Center"
                             FontFamily="Montserrat-Bold"
@@ -48,8 +46,7 @@
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        
                     </Grid.ColumnDefinitions>
 
                     <Label
@@ -65,18 +62,7 @@
                 Text="Marca:" 
 				FontAttributes="Bold"
                 Grid.Column="1"/>
-                    <Label
-                        FontFamily="Montserrat-Bold"
-                TextColor="White"
-                Text="Modelo:" 
-				FontAttributes="Bold"
-                Grid.Column="2"/>
-                    <Label
-                        FontFamily="Montserrat-Bold"
-                TextColor="White"
-                Text="Cantidad:" 
-				FontAttributes="Bold"
-                Grid.Column="3"/>
+                    
                 </Grid>
 
                 <ScrollView>
@@ -91,16 +77,14 @@
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="100"/>
+                                                
 
                                             </Grid.ColumnDefinitions>
 
                                             <Label  Text="{Binding producto}" TextColor="White" Grid.Column="0"/>
                                             <Label Text="{Binding marca}" TextColor="White" Grid.Column="1"/>
-                                            <Label Text="{Binding modelo}" TextColor="White" Grid.Column="2"/>
-                                            <Label Text="{Binding cantidad}" TextColor="White" Grid.Column="3"/>
-                                            <Button ImageSource="beliminar.png" HeightRequest="70" Clicked="Button_Clicked" Grid.Column="4"/>
+                                            
+                                            <Button ImageSource="beliminar.png" HeightRequest="70" Clicked="Button_Clicked" Grid.Column="2"/>
 
                                         </Grid>
                                     </StackLayout>

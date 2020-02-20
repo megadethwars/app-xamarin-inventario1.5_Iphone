@@ -9,25 +9,27 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
         
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        <ToolbarItem Text="                " />
+        <ToolbarItem Text="                " />
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 
             <StackLayout
-		        Padding="70,10,70,50">
+		        Padding="37,5,35,50">
                 <StackLayout
-                    Padding="215,20,215,30">
+                    Padding="53,0,53,5">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
                         <Label
                             VerticalOptions="Center"
@@ -102,12 +104,12 @@
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        
                         
                     </Grid.ColumnDefinitions>
-
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
                     <Label
                 Text="Usuario:" 
 				FontAttributes="Bold"
@@ -128,34 +130,16 @@
                 TextColor="White"
                 Grid.Column="2"
 				/>
-                    <Label
-                Text="Marca" 
-				FontAttributes="Bold"
-                TextColor="White"
-                Grid.Column="3"
-				/>
-
-                    <Label
-                Text="Fecha" 
-				FontAttributes="Bold"
-                TextColor="White"
-                Grid.Column="4"
-				/>
-                    <Label
-                Text="Ubicacion" 
-				FontAttributes="Bold"
-                TextColor="White"
-                Grid.Column="5"
-				/>
+                    
                    
 
                 </Grid>
 
 
                 <ScrollView
-			VerticalOptions="FillAndExpand"
-			>
-                    <StackLayout>
+			    VerticalOptions="FillAndExpand">
+			
+                    <StackLayout Padding="0,0,0,10">
                         <ListView x:Name="postListView"  ItemSelected="PostListView_ItemSelected" BackgroundColor="Gray">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -166,18 +150,14 @@
                                                     <ColumnDefinition Width="100" />
                                                     <ColumnDefinition Width="100"/>
                                                     <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                    <ColumnDefinition Width="100"/>
+                                                    
                                                     
                                                 </Grid.ColumnDefinitions>
 
                                                 <Label Text="{Binding usuario}" BackgroundColor="Gray" TextColor="White" Grid.Column="0"/>
                                                 <Label Text="{Binding producto}" BackgroundColor="Gray" TextColor="White" Grid.Column="1"/>
                                                 <Label Text="{Binding movimiento}" BackgroundColor="Gray" TextColor="White" Grid.Column="2"/>
-                                                <Label Text="{Binding marca}" BackgroundColor="Gray" TextColor="White" Grid.Column="3"/>
-                                                <Label Text="{Binding fecha}" BackgroundColor="Gray" TextColor="White" Grid.Column="4"/>
-                                                <Label Text="{Binding lugar}" BackgroundColor="Gray" TextColor="White" Grid.Column="5"/>
+                                                
                                                 
 
                                             </Grid>

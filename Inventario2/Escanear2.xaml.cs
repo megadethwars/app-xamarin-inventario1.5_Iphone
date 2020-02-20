@@ -15,6 +15,7 @@ namespace Inventario2
     {
         List<InventDB> users1;
         RetirarProducto s;
+        Plugin.Media.Abstractions.MediaFile f = null;
         public Escanear2(RetirarProducto r)
         {
             InitializeComponent();
@@ -78,6 +79,8 @@ namespace Inventario2
                     fecha = DateTime.Now.ToString("dd/MM/yyyy")
                 };
                 s.mv.Add(mv1);
+                s.f2.Add(f);
+                s.f1.Add(f);
                 DependencyService.Get<IMessage>().ShortAlert(qr);
             }
             else

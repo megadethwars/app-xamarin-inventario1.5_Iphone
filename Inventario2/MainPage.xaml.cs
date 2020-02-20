@@ -31,39 +31,40 @@ namespace Inventario2
 
         private async void IniciarSesion(object sender, EventArgs e)
         {
-            Boolean password = false;
-            try
-            {
-                if (nameEntry.Text != null && passEntry.Text != null)
-                {
-                    var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == nameEntry.Text).ToListAsync();
-                    if (usuarios.Count() != 0)
-                    {
-                        for (int x = 0; x < usuarios.Count(); x++)
-                        {
-                            if (usuarios[x].contrasena == passEntry.Text)
-                            {
-                                password = true;
-                                await Navigation.PushAsync(new Menu(usuarios[x]));
-                                break;
-                            }
+             Boolean password = false;
+             try
+             {
+                 if (nameEntry.Text != null && passEntry.Text != null)
+                 {
+                     var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == nameEntry.Text).ToListAsync();
+                     if (usuarios.Count() != 0)
+                     {
+                         for (int x = 0; x < usuarios.Count(); x++)
+                         {
+                             if (usuarios[x].contrasena == passEntry.Text)
+                             {
+                                 password = true;
+                                 await Navigation.PushAsync(new Menu(usuarios[x]));
+                                 break;
+                             }
 
-                        }
-                        if (password == false)
-                            await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
+                         }
+                         if (password == false)
+                             await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
 
-                    }
-                    else
-                        await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
-                }
-                else
-                    await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
-            }
-            catch
-            {
-                await DisplayAlert("Error", "Error de Conexion con el Servidor", "Aceptar");
-            }
+                     }
+                     else
+                         await DisplayAlert("Error", "Usuario o contraseña incorrecto(s)", "Aceptar");
+                 }
+                 else
+                     await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
+             }
+             catch
+             {
+                 await DisplayAlert("Error", "Error de Conexion con el Servidor", "Aceptar");
+             }
 
+             
             
         }
     }
