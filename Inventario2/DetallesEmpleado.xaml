@@ -9,11 +9,9 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
         
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        <ToolbarItem Text="               " />
+        <ToolbarItem Text="               " />
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
@@ -23,9 +21,9 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ScrollView>
             <StackLayout
-		Padding="70,20,70,20">               
+		Padding="37,20,37,20">               
                 <StackLayout
-            Padding="92,20,92,30">
+            Padding="0,20,0,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -33,9 +31,9 @@
                             VerticalOptions="Center"
                             FontFamily="Montserrat-Bold"
                             TextColor="White"
-                            FontSize="30"
+                            FontSize="27"
 			                HorizontalOptions="Center"
-			                Text="DETALLES DEL EMPLEADO" 
+			                Text="DETALLES EMPLEADO" 
 			                FontAttributes="Bold"
 			                StyleId="Titulo"/>
 

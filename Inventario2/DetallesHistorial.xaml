@@ -9,22 +9,20 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
         
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        <ToolbarItem Text="                " />
+        <ToolbarItem Text="                " />
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-               Source="nuevofondo.png" Aspect="AspectFill"/>
+               Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
-		        Padding="70,10,70,10">
+		        Padding="37,10,37,10">
                 <StackLayout
-                    Padding="93,20,93,20">
+                    Padding="0,20,0,20">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -32,9 +30,9 @@
                             VerticalOptions="Center"
                             FontFamily="Montserrat-Bold"
                             TextColor="White"
-                            FontSize="30"
+                            FontSize="27"
 			                HorizontalOptions="Center"
-			                Text="DETALLES DEL PRODUCTO" 
+			                Text="DETALLES PRODUCTO" 
 			                FontAttributes="Bold"
 			                StyleId="Titulo"/>
 

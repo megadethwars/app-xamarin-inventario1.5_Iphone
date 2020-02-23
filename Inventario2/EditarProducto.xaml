@@ -4,11 +4,9 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME" Clicked="ToolbarItem_Clicked" ></ToolbarItem>
         
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="             " />
-        <ToolbarItem Text="            " />
+        <ToolbarItem Text="               " />
+        <ToolbarItem Text="               " />
+        
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
@@ -16,9 +14,9 @@
                Source="nuevofondo.png" Aspect="AspectFill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="70,40,70,10">
+            <StackLayout Padding="37,40,37,10">
                 <StackLayout
-            Padding="100,10,100,10">
+            Padding="104,10,104,10">
                     <Grid ColumnSpacing="0"
                           HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
