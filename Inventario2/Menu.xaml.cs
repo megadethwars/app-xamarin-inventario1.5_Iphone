@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Inventario2.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,16 +14,17 @@ namespace Inventario2
     public partial class Menu : ContentPage
     {
         public PDFMovement pdfmovement;
-        public Usuario user;
-        public Menu(Usuario u)
+        public ModelUser user;
+        public Menu(ModelUser u)
         {
             pdfmovement = new PDFMovement("");
             InitializeComponent();
             user = u;
-            User.nombre = user.nombre;
-            User.apellido_paterno = user.apellido_paterno;
-            User.ID = user.ID;
-            User.correo = user.correo;
+            CurrentUser.nombre = user.nombre;
+            CurrentUser.apellido_paterno = user.apellido_paterno;
+            CurrentUser.ID = u.ID;
+            //CurrentUser.ID = user.ID.ToString();
+            CurrentUser.correo = user.correo;
         }
 
         private void Ir_Perfil(object sender, EventArgs e)
@@ -33,7 +34,7 @@ namespace Inventario2
 
         private void Ir_Inventario(object sender, EventArgs e)
         {
-            if (user.tipoUsuario == "Administrador" || user.tipoUsuario == "Almacen")
+            if (user.IDtipoUsuario == 1 || user.IDtipoUsuario == 2)
                 Navigation.PushAsync(new Inventario());
         }
 
@@ -49,7 +50,7 @@ namespace Inventario2
         { //Hacer validacion y si es administrador accede, si no no realiza nada
           //tipo=
           //if (tipo==administrador)
-            if (user.tipoUsuario == "Administrador")
+            if (user.IDtipoUsuario == 1)
                 Navigation.PushAsync(new Empleado(user));
             //else
             //DisplayAlert("Advertencia", "No Puedes acceder, no eres administrador", "OK");
@@ -73,7 +74,7 @@ namespace Inventario2
             Navigation.PushAsync(pdfmovement);
         }
 
-        
+
     }
 }
-    
+
