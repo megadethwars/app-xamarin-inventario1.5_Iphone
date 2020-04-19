@@ -7,15 +7,15 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.Storage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Inventario2.Models;
 namespace Inventario2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    
+
     public partial class DetallesProducto : ContentPage
     {
-        public InventDB n;
-        public DetallesProducto(InventDB db)
+        public ModelDevice n;
+        public DetallesProducto(ModelDevice db)
         {
             InitializeComponent();
             this.n = db;
@@ -25,10 +25,10 @@ namespace Inventario2
         {
             base.OnAppearing();
 
-            nameProd.Text = n.nombre;
+            nameProd.Text = n.producto;
             idCodigo.Text = n.codigo;
             idcantidad.Text = n.cantidad;
-            idlugar.Text = n.lugar;
+            idlugar.Text = n.Lugar;
             idobserv.Text = n.observaciones;
             //idProd.Text = n.ID.ToString();
             idmarca.Text = n.marca;
@@ -38,7 +38,7 @@ namespace Inventario2
             idserie.Text = n.serie;
             iddesc.Text = n.descompostura;
             idpert.Text = n.pertenece;
-            idFecha.Text = n.Fecha;
+            idFecha.Text = n.fecha;
 
             idmodelo.Text = n.modelo;
             imagen.Source = "https://fotosavs.blob.core.windows.net/fotosinventario/" + n.foto;
@@ -52,25 +52,25 @@ namespace Inventario2
                     //Eliminar empleado
                     try
                     {
-                        await App.MobileService.GetTable<InventDB>().DeleteAsync(n);
-                        var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
-                        var client = account.CreateCloudBlobClient();
-                        var container = client.GetContainerReference("fotosinventario");
-                        await container.CreateIfNotExistsAsync();
-                        var block = container.GetBlockBlobReference($"{n.foto}");
-                        await block.DeleteIfExistsAsync();
-                        await DisplayAlert("Hecho", "Producto borrado exitosamente", "Aceptar");
-                        await Navigation.PopAsync();
+                        //await App.MobileService.GetTable<InventDB>().DeleteAsync(n);
+                        //var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
+                        // var client = account.CreateCloudBlobClient();
+                        // var container = client.GetContainerReference("fotosinventario");
+                        // await container.CreateIfNotExistsAsync();
+                        // var block = container.GetBlockBlobReference($"{n.foto}");
+                        // await block.DeleteIfExistsAsync();
+                        // await DisplayAlert("Hecho", "Producto borrado exitosamente", "Aceptar");
+                        // await Navigation.PopAsync();
                     }
                     catch (MobileServiceInvalidOperationException ms)
                     {
 
-
-                       await  DisplayAlert("Error", "Error al borrar el producto", "Aceptar");
+                        Console.WriteLine(ms.Message);
+                        await DisplayAlert("Error", "Error al borrar el producto", "Aceptar");
 
                     }
-                        break;
-                    
+                    break;
+
             }
         }
 

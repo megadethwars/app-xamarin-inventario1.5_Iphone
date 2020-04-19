@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventario2.UpdateBD">
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+               Source="nuevofondo.png" Aspect="Fill"/>
+        <StackLayout
+		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView>
+                <StackLayout
+		Padding="210,20,210,20">
+                    <StackLayout
+            Padding="613,20,613,30">
+                        <Grid ColumnSpacing="0" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions Width = "100"/>
+                            <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
+                            <Label
+                            VerticalOptions="Center"
+                 FontFamily="Montserrat-Bold"
+                TextColor="White"
+                            FontSize="26"
+			    HorizontalOptions="Center"
+			    Text="ACTUALIZAR BD" 
+			    FontAttributes="Bold"
+			    StyleId="Titulo"/>
+
+                        </Grid>
+
+
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                        <Label Text="Nombre de archivo:"
+                           TextColor="White"
+                           x:Name="nombre"
+                           FontSize="Large"/>
+                        <Label Text="Porcentaje de carga:%"
+                           TextColor="White"
+                           x:Name="porcent"
+                           FontSize="Large"/>
+                        <Button Text="Seleccionar Archivo"
+                            TextColor="Red"
+                            BackgroundColor="Black"
+                            Clicked="Button_Clicked"/>
+                        <Button Text="Iniciar"
+                            TextColor="Red"
+                            BackgroundColor="Black"
+                            Clicked="Button_Clicked_1"/>
+
+                        <Button Text="Detener"
+                            TextColor="Red"
+                            BackgroundColor="Black"
+                            Clicked="Button_detener"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>
