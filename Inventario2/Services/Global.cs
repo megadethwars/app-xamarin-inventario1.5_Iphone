@@ -6,7 +6,7 @@ namespace Inventario2.Services
 {
     public class Global
     {
-        //public static string url = "http://avsinvservice.azurewebsites.net/";
-        public static string url = "http://127.0.0.1:5000/";
+        public static string url = "https://avsinvservice.azurewebsites.net/";
+        //public static string url = "http://127.0.0.1:5000/";
     }
 }
