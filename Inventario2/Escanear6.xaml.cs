@@ -7,6 +7,8 @@ using ZXing;
 using ZXing.Net.Mobile.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Inventario2.Models;
+using Inventario2.Services;
 
 namespace Inventario2
 {
@@ -27,11 +29,11 @@ namespace Inventario2
             Device.BeginInvokeOnMainThread(async () =>
             {
                 //await DisplayAlert("Scanned result", result.Text, "OK");
-                if (h.mv.Count > 0)
+                if (h.movimientos.Count > 0)
                 {
-                    for (int x = 0; x < h.mv.Count; x++)
+                    for (int x = 0; x < h.movimientos.Count; x++)
                     {
-                        if (!(h.mv[x].codigo == result.Text))
+                        if (!(h.movimientos[x].codigo == result.Text))
                         {
                             boo = true;
                         }
@@ -58,32 +60,52 @@ namespace Inventario2
         }
         public async void buscar(string qr)
         {
-            users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == qr).ToListAsync();
-            if (users1.Count != 0)
+            //users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == qr).ToListAsync();
+
+            var devices = await DeviceService.getdevicebycode(qr);
+
+            if (devices == null)
             {
-                Movimientos mv1 = new Movimientos
+                return;
+            }
+
+            if (devices[0].statuscode == 500)
+            {
+                return;
+            }
+
+            if (devices[0].statuscode == 404)
+            {
+                return;
+            }
+
+            if (devices[0].statuscode == 200)
+            {
+                ModelMovements mv1 = new ModelMovements
                 {
                     ID = "",
-                    observ = "Ninguna",
-                    producto = users1[0].nombre,
-                    marca = users1[0].marca,
-                    modelo = users1[0].modelo,
-                    IdProducto = users1[0].ID,
-                    codigo = users1[0].codigo,
-                    serie = users1[0].serie,
+                    observacionesMov = "Ninguna",
+                    producto = devices[0].producto,
+                    marca = devices[0].marca,
+                    modelo = devices[0].modelo,
+                    IDdevice = devices[0].ID,
+                    codigo = devices[0].codigo,
+                    serie = devices[0].serie,
                     cantidad = "1",
-                    foto = "",
-                    movimiento = "Retirar",
-                    lugar = " ",
-                    fecha = DateTime.Now.ToString("dd/MM/yyyy")
+                    fotomov1 = "",
+                    IDtipomov = 2,
+                    IDlugar = 1
+                    //fecha = DateTime.Now.ToString("dd/MM/yyyy")
                 };
-                h.mv.Add(mv1);
+                h.movimientos.Add(mv1);
                 h.f1.Add(f);
                 h.f2.Add(f);
                 DependencyService.Get<IMessage>().ShortAlert(qr);
             }
-            else
-                DependencyService.Get<IMessage>().ShortAlert("Producto no Encontrado");
+
+
+
+
         }
 
         protected override void OnAppearing()
