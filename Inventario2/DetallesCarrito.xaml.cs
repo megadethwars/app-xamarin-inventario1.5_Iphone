@@ -8,6 +8,7 @@ using Microsoft.WindowsAzure.Storage;
 using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Inventario2.Models;
 
 namespace Inventario2
 {
@@ -17,15 +18,15 @@ namespace Inventario2
         Plugin.Media.Abstractions.MediaFile f;
         Plugin.Media.Abstractions.MediaFile f2;
         public RetirarProducto ca;
-        public Movimientos ma;
-        public DetallesCarrito(Movimientos m,RetirarProducto r)
+        public ModelMovements ma;
+        public DetallesCarrito(ModelMovements m, RetirarProducto r)
         {
             InitializeComponent();
             nameProd.Text = m.producto;
             marcatxt.Text = m.marca;
             modeltxt.Text = m.modelo;
             cantidadtxt.Text = m.cantidad;
-            observtxt.Text = m.observ;
+            observtxt.Text = m.observacionesMov;
             ma = m;
             ca = r;
         }
@@ -34,9 +35,9 @@ namespace Inventario2
         {
             if (!(observ.Text == ""))
             {
-                ma.observ = observ.Text;
+                ma.observacionesMov = observ.Text;
                 observtxt.Text = observ.Text;
-                    }
+            }
             if (!(cantidad.Text == ""))
             {
                 ma.cantidad = cantidad.Text;
@@ -44,9 +45,9 @@ namespace Inventario2
             }
             if (observ.Text != "" || cantidad.Text != "")
                 DisplayAlert("Aceptar", "Producto Actualizado Correctamente", "Aceptar");
-            if (f != null || f2!=null)
+            if (f != null || f2 != null)
             {
-                for(int x =0; x<ca.mv.Count;x++)
+                for (int x = 0; x < ca.mv.Count; x++)
                 {
                     if (ca.mv[x].codigo == ma.codigo)
                         ca.f1[x] = f;
@@ -61,7 +62,7 @@ namespace Inventario2
 
                 DisplayAlert("OK", "FOTO AGREGADA CORRECTAMENTE", "ACEPTAR");
             }
-            
+
         }
 
         void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
