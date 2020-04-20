@@ -179,7 +179,7 @@
 
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Text="{Binding nombre}" TextColor="White" Grid.Column="0"/>
+                                                <Label Text="{Binding producto}" TextColor="White" Grid.Column="0"/>
                                                 <Label Text="{Binding marca}" TextColor="White"
                                                Grid.Column="1"/>
                                                 <Label Text="{Binding codigo}" TextColor="White" Grid.Column="2"/>
