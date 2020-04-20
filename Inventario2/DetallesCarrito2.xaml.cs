@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Inventario2.Models;
+using Inventario2.Services;
 
 namespace Inventario2
 {
@@ -14,44 +16,44 @@ namespace Inventario2
     {
         Plugin.Media.Abstractions.MediaFile f;
         Plugin.Media.Abstractions.MediaFile f2;
-        public IngresarProducto ca;
-        public Movimientos ma;
-        public DetallesCarrito2(Movimientos m, IngresarProducto r)
+        public IngresarProducto ingresarproducto;
+        public ModelMovements movements;
+        public DetallesCarrito2(ModelMovements m, IngresarProducto r)
         {
             InitializeComponent();
             nameProd.Text = m.producto;
             marcatxt.Text = m.marca;
             modeltxt.Text = m.modelo;
             cantidadtxt.Text = m.cantidad;
-            observtxt.Text = m.observ;
-            ma = m;
-            ca = r;
+            observtxt.Text = m.observacionesMov;
+            movements = m;
+            ingresarproducto = r;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
             if (!(observ.Text == null))
             {
-                ma.observ = observ.Text;
+                movements.observacionesMov = observ.Text;
                 observtxt.Text = observ.Text;
             }
             if (!(cantidad.Text == null))
             {
-                ma.cantidad = cantidad.Text;
+                movements.cantidad = cantidad.Text;
                 cantidadtxt.Text = cantidad.Text;
             }
             if (observ.Text != null || cantidad.Text != null)
                 DisplayAlert("Aceptar", "Producto Actualizado Correctamente", "Aceptar");
             if (f != null || f2 != null)
             {
-                for (int x = 0; x < ca.mv.Count; x++)
+                for (int x = 0; x < ingresarproducto.movimientos.Count; x++)
                 {
-                    if (ca.mv[x].codigo == ma.codigo)
-                        ca.f1[x] = f;
+                    if (ingresarproducto.movimientos[x].codigo == movements.codigo)
+                        ingresarproducto.f1[x] = f;
                     if (f2 != null)
                     {
-                        if (ca.mv[x].codigo == ma.codigo)
-                            ca.f2[x] = f2;
+                        if (ingresarproducto.movimientos[x].codigo == movements.codigo)
+                            ingresarproducto.f2[x] = f2;
                     }
 
                 }
@@ -102,7 +104,7 @@ namespace Inventario2
                 return;
             await DisplayAlert("File Location", f.Path, "OK");
             image1.Source = f.Path;
-            image1.RotateTo(90);
+            await image1.RotateTo(90);
             f.GetStream();
         }
 
@@ -128,7 +130,7 @@ namespace Inventario2
                 return;
             await DisplayAlert("File Location", f2.Path, "OK");
             image2.Source = f2.Path;
-            image2.RotateTo(90);
+            await image2.RotateTo(90);
             f2.GetStream();
         }
     }

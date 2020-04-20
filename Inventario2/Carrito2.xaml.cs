@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
 using Inventario2.Model;
+using Inventario2.Models;
 
 namespace Inventario2
 {
@@ -22,7 +23,7 @@ namespace Inventario2
         {
             InitializeComponent();
             re = r;
-            postListView.ItemsSource = re.mv;
+            postListView.ItemsSource = re.movimientos;
 
 
         }
@@ -37,43 +38,51 @@ namespace Inventario2
             base.OnAppearing();
             //re.mv.Clear();
             postListView.ItemsSource = null;
-            postListView.ItemsSource = re.mv;
+            postListView.ItemsSource = re.movimientos;
 
 
         }
 
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedPost = postListView.SelectedItem as Movimientos;
-            if (selectedPost != null)
-                Navigation.PushAsync(new DetallesCarrito2(selectedPost, re));
+            try
+            {
+                var selectedPost = postListView.SelectedItem as ModelMovements;
+                if (selectedPost != null)
+                    Navigation.PushAsync(new DetallesCarrito2(selectedPost, re));
+            }
+            catch
+            {
+
+            }
+
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
             var button = sender as Button;
-            var product = button.BindingContext as Movimientos;
+            var product = button.BindingContext as ModelMovements;
             int x = 0;
-            for (int y = 0; y < re.mv.Count(); y++)
+            for (int y = 0; y < re.movimientos.Count(); y++)
             {
-                if (re.mv[y] == product)
+                if (re.movimientos[y] == product)
                 {
                     x = y;
                     break;
                 }
             }
             re.f1.Remove(re.f1[x]);
-            re.mv.Remove(product);
+            re.movimientos.Remove(product);
 
             postListView.ItemsSource = null;
-            postListView.ItemsSource = re.mv;
+            postListView.ItemsSource = re.movimientos;
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            re.mv.Clear();
+            re.movimientos.Clear();
             postListView.ItemsSource = null;
-            postListView.ItemsSource = re.mv;
+            postListView.ItemsSource = re.movimientos;
         }
 
         /* private async void Acept_Clicked(object sender, EventArgs e)
