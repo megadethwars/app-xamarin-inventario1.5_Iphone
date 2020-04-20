@@ -25,10 +25,10 @@ namespace Inventario2
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            // var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
+            
+           // var usuarios = await App.MobileService.GetTable<Usuario>().ToListAsync();
             var usuarios = await UserService.getusers();
-            if (usuarios[0].statuscode == 200 || usuarios[0].statuscode == 201)
+            if(usuarios[0].statuscode==200 || usuarios[0].statuscode == 201)
             {
                 postListView.ItemsSource = usuarios;
             }
@@ -36,20 +36,20 @@ namespace Inventario2
             {
                 await DisplayAlert("Buscando", "no encotntrados, error en servicio", "OK");
             }
-
+            
         }
         private async void SearchBarEmp(object sender, EventArgs e)
         {
-            var isNumeric = int.TryParse(search.Text, out int n);
+            var isNumeric = int.TryParse(search.Text,out int n);
 
 
             if (!isNumeric)
             {
-
+               
                 //var users1 = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == search.Text).ToListAsync();
                 var users1 = await UserService.getuserbyname(search.Text);
 
-                if (users1 == null)
+                if (users1==null)
                 {
                     await DisplayAlert("Buscando", "error de conexion con el servidor", "Aceptar");
                 }
@@ -57,12 +57,12 @@ namespace Inventario2
 
                 if (users1.Count != 0)
                 {
-                    if (users1[0].statuscode == 404)
+                    if (users1[0].statuscode==404)
                     {
                         await DisplayAlert("Buscando", "Usuario no encontrado", "Aceptar");
                         return;
                     }
-                    else if (users1[0].statuscode == 500)
+                    else if(users1[0].statuscode == 500)
                     {
                         await DisplayAlert("Buscando", "error interno del servicio", "Aceptar");
                         return;
@@ -74,7 +74,7 @@ namespace Inventario2
                 else
                 {
                     await DisplayAlert("Buscando", "Usuario no encontrado", "Aceptar");
-
+                    
                     var usuarios = await UserService.getusers();
                     if (usuarios[0].statuscode == 200 || usuarios[0].statuscode == 201)
                     {
@@ -85,7 +85,7 @@ namespace Inventario2
                         await DisplayAlert("Buscando", "no encotntrados, error en servicio", "OK");
                         return;
                     }
-
+                 
                 }
             }
             else
@@ -133,7 +133,7 @@ namespace Inventario2
                 }
             }
 
-        }
+         }
 
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -143,7 +143,7 @@ namespace Inventario2
         }
 
         private void AgregarEmp(object sender, EventArgs e)
-        {
+        { 
             Navigation.PushAsync(new AgregarEmpleado());
 
         }
@@ -169,7 +169,7 @@ namespace Inventario2
 
         private void search_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-
+            
         }
     }
 }

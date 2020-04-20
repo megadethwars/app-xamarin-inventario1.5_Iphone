@@ -10,6 +10,10 @@ using Microsoft.WindowsAzure.MobileServices;
 using Plugin.Media;
 using System.IO;
 using Microsoft.WindowsAzure.Storage;
+using Inventario2.Models;
+using Inventario2.Services;
+
+using Newtonsoft.Json;
 
 namespace Inventario2
 {
@@ -20,14 +24,36 @@ namespace Inventario2
         public static MobileServiceClient client = new MobileServiceClient("https://inventarioavs.azurewebsites.net");
         public string identi;
         public string PathFoto;
-        public string tipousuario;
-        public AgregarEmpleado()
+        public int tipousuario;
+        Stream stream;
+        public  AgregarEmpleado()
         {
             InitializeComponent();
             identi = Guid.NewGuid().ToString();
+          
+        }
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var roles = await RolesService.getroles();
+
+            if (roles == null)
+            {
+                await DisplayAlert("error", "error de conexion con el servidor", "Aceptar");
+                return;
+            }
+
+            if (roles[0].statuscode==200 || roles[0].statuscode==201)
+            {
+                pickerUser.ItemsSource = roles;
+            }
+
+            
 
         }
+
         private void GenerateID(object sender, EventArgs e)
         {//Generar ID usando Data Binding y asignarlo a la variable idEmp
 
@@ -44,25 +70,57 @@ namespace Inventario2
                 if (contra2.Text == contraEntry.Text)
                 {
 
-                    Usuario user = new Usuario
+                    ModelUser user = new ModelUser
                     {
-                        ID = identi,
+                        
                         nombre = nombrEntry.Text,
-                        contrasena = contraEntry.Text,
+                        password = contraEntry.Text,
                         apellido_paterno = apepEntry.Text,
                         apellido_materno = apemEntry.Text,
-                        tipoUsuario = tipousuario,
+                        IDtipoUsuario = tipousuario,
                         telefono = telEntry.Text,
                         correo = correoEntry.Text,
-                        fechaContratacion = DateTime.Now.ToString("dd/MM/yyyy")
+                        
+                        //fechaContratacion = DateTime.Now.ToString("dd/MM/yyyy")
                     };
                     try
                     {
-                        await App.MobileService.GetTable<Usuario>().InsertAsync(user);
-                        if (!(f == null))
-                            UploadFile(f.GetStream());
-                        await DisplayAlert("Agregado", "Usuario agregado correctamente", "Aceptar");
-                        await Navigation.PopAsync();
+
+                      
+                        
+                        user.foto = PathFoto;
+
+                        if (PathFoto == null)
+                        {
+                            user.foto = "foto pendiente";
+                        }
+
+                        var status = await UserService.postuser(JsonConvert.SerializeObject(user));
+                        if (status.statuscode==400)
+                        {
+                            await DisplayAlert("error", "bad request", "Aceptar");
+                            return;
+                        }
+
+                        if (status.statuscode == 409)
+                        {
+                            await DisplayAlert("error", "el usiario ya existe", "Aceptar");
+                            return;
+                        }
+
+                        if (status.statuscode == 500)
+                        {
+                            await DisplayAlert("error", "error en el servicio", "Aceptar");
+                            return;
+                        }
+
+                        if (status.statuscode == 200 || status.statuscode == 201)
+                        {
+                            await DisplayAlert("Agregado", "Usuario agregado correctamente", "Aceptar");
+                            await Navigation.PopAsync();
+                        }
+
+                        
 
 
                     }
@@ -73,19 +131,30 @@ namespace Inventario2
                     }
                 }
                 else
-                    DisplayAlert("Error", "Contraseña no coincide", "Aceptar");
+                    await DisplayAlert("Error", "Contraseña no coincide", "Aceptar");
             }
             else
-                DisplayAlert("Error","Faltan campos por Llenar","Aceptar");
+                await DisplayAlert("Error","Faltan campos por Llenar","Aceptar");
         }
 
         private void PickerUser_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tipousuario = pickerUser.SelectedItem as string;
+            var modus = (ModelRoles)pickerUser.SelectedItem;
+            tipousuario = modus.ID;
+            modus.Dispose();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                stream.Close();
+            }
+            catch
+            {
+
+            }
+
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsCameraAvailable ||
                 !CrossMedia.Current.IsTakePhotoSupported)
@@ -106,9 +175,23 @@ namespace Inventario2
                 return;
             await DisplayAlert("File Location", f.Path, "OK");
             imagen.Source = f.Path;
-            imagen.RotateTo(90);
-            f.GetStream();
+            await imagen.RotateTo(90);
+            stream = f.GetStream();
+
+            converttobase64(stream);
+
+            stream.Close();
+
         }
+
+        private void converttobase64(Stream stream)
+        {
+            byte[] ImageData = new byte[stream.Length];
+            stream.Read(ImageData, 0, System.Convert.ToInt32(stream.Length));
+            string _base64String = Convert.ToBase64String(ImageData);
+            PathFoto = _base64String;
+        }
+
         private async void UploadFile(Stream stream)
         {
             var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
@@ -121,6 +204,7 @@ namespace Inventario2
             var block = container.GetBlockBlobReference($"{identi}.jpg");
             await block.UploadFromStreamAsync(stream);
             string url = block.Uri.OriginalString;
+            PathFoto = url;
         }
 
         void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)

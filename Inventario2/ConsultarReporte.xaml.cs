@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Inventario2.Models;
+using Inventario2.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ZXing.Net.Mobile.Forms;
@@ -36,7 +37,9 @@ namespace Inventario2
 
                 //search device
                 // consulta de reportes y llenado de tabla
-                List<Model.Reportes> listareportes = await QueryReport(scanText);
+                List<ModelReport> listareportes = await QueryReport(scanText);
+
+
 
                 if (listareportes.Count != 0)
                 {
@@ -64,42 +67,110 @@ namespace Inventario2
         private void PostListView_ItemSelected(object sender, EventArgs e)
         {
             postListView.SelectedItem = null;
-            var selectedPost = postListView.SelectedItem as Model.Reportes;
+            var selectedPost = postListView.SelectedItem as ModelReport;
             if (selectedPost != null)
                 Navigation.PushAsync(new DetallesReporte(selectedPost));
 
         }
 
-        private async Task<List<Model.Reportes>> QueryReport(string codigo)
+        private async Task<List<ModelReport>> QueryReport(string codigo)
         {
 
             try
             {
-                var table = await App.MobileService.GetTable<Model.Reportes>().Where(u => u.codigo == codigo).ToListAsync();
+                //var table = await App.MobileService.GetTable<Model.Reportes>().Where(u => u.codigo == codigo).ToListAsync();
+                var table = await ReportService.getreportbycode(codigo);
+
+
+                if (table == null)
+                {
+                    await DisplayAlert("Buscando", "error de conexion", "Aceptar");
+                    return null;
+                }
+
+                if (table[0].statuscode == 500)
+                {
+                    await DisplayAlert("Buscando", "Reportes de codigo no encontrados", "Aceptar");
+                    return null;
+                }
+
+
+                if (table[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "Reportes de codigo no encontrados", "Aceptar");
+                    return null;
+                }
+
+
+                if (table[0].statuscode==201 || table[0].statuscode == 200)
+                {
+                    return table;
+                }
 
                 return table;
+            
+            
+            
             }
+
+
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                await DisplayAlert("Buscando", "error de conexion", "Aceptar");
                 return null;
             }
 
         }
 
 
-        private async Task<List<Model.Reportes>> QueryReportByName(string nombre)
+        private async Task<List<ModelReport>> QueryReportByName(string nombre)
         {
 
             try
             {
-                var table = await App.MobileService.GetTable<Model.Reportes>().Where(u => u.producto == nombre).ToListAsync();
+                //var table = await App.MobileService.GetTable<Model.Reportes>().Where(u => u.codigo == codigo).ToListAsync();
+                var table = await ReportService.getreportbyproduct(nombre);
+
+
+                if (table == null)
+                {
+                    await DisplayAlert("Buscando", "error de conexion", "Aceptar");
+                    return null;
+                }
+
+                if (table[0].statuscode == 500)
+                {
+                    await DisplayAlert("Buscando", "Reportes de codigo no encontrados", "Aceptar");
+                    return null;
+                }
+
+
+                if (table[0].statuscode == 404)
+                {
+                    await DisplayAlert("Buscando", "Reportes de codigo no encontrados", "Aceptar");
+                    return null;
+                }
+
+
+                if (table[0].statuscode == 201 || table[0].statuscode == 200)
+                {
+                    return table;
+                }
 
                 return table;
+
+
+
             }
+
+
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                await DisplayAlert("Buscando", "error de conexion", "Aceptar");
                 return null;
             }
 
@@ -147,7 +218,12 @@ namespace Inventario2
                 {
                     if (isInt)
                     {
-                        List<Model.Reportes> listareportes = await QueryReport(nombreID.Text);
+                        List<ModelReport> listareportes = await QueryReport(nombreID.Text);
+
+                        if (listareportes == null)
+                        {
+                            return;
+                        }
 
                         if (listareportes.Count != 0)
                         {
@@ -155,12 +231,17 @@ namespace Inventario2
                         }
                         else
                         {
-                            await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
+                            //await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
                         }
                     }
                     else
                     {
-                        List<Model.Reportes> listareportes = await QueryReportByName(nombreID.Text);
+                        List<ModelReport> listareportes = await QueryReportByName(nombreID.Text);
+
+                        if (listareportes == null)
+                        {
+                            return;
+                        }
 
                         if (listareportes.Count != 0)
                         {
@@ -168,7 +249,7 @@ namespace Inventario2
                         }
                         else
                         {
-                            await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
+                            //await DisplayAlert("Buscando", "Reportes de codigo encontrados", "Aceptar");
                         }
                     }
                 }

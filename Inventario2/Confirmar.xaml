@@ -65,15 +65,18 @@
                                PlaceholderColor="White"
                                TextColor="White"
                        Placeholder="Ingrese la Contraseña"/>
-                        <Label Text="Lugar de Destino"
-                               FontFamily="Montserrat-Bold"
-                       TextColor="White"
-                   FontAttributes="Bold"/>
-                        <Entry x:Name="Destino"
-                               BackgroundColor="Gray"
-                               PlaceholderColor="White"
-                               TextColor="White"
-                       Placeholder="Ingrese el Destino"/>
+                        <Picker x:Name="pickerLugar"
+                            Title="Selecciona el lugar de destino"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            TitleColor="White"
+                            SelectedIndexChanged="PickerLugar_SelectedIndexChanged">
+                            <!--<Picker.Items>
+                            <x:String>Usuario</x:String>
+                            <x:String>Administrador</x:String>
+                            <x:String>Almacen</x:String>
+                        </Picker.Items>-->
+                        </Picker>
                         <Button Clicked="Button_Clicked"
                         TextColor="Red"
                         ImageSource="baceptar.png"></Button>

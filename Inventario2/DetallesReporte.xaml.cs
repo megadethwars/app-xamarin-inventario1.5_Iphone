@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Inventario2.Models;
 namespace Inventario2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -16,9 +16,9 @@ namespace Inventario2
     {
         private string urlImage = "";
 
-        private Model.Reportes reporte;
+        private ModelReport reporte;
         bool isImageOK;
-        public DetallesReporte(Model.Reportes Reporte)
+        public DetallesReporte(ModelReport Reporte)
         {
             InitializeComponent();
             this.reporte = Reporte;
@@ -30,7 +30,7 @@ namespace Inventario2
             idobserv.Text = reporte.comentario;
             try
             {
-                imagen.Source = "https://fotosavs.blob.core.windows.net/fotosreporte/" + reporte.foto + ".jpg";
+                imagen.Source = "https://fotosavs.blob.core.windows.net/fotosreporte/" + reporte.foto2 + ".jpg";
                 isImageOK = true;
             }
             catch

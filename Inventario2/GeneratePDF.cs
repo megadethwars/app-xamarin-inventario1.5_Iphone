@@ -15,6 +15,8 @@ using System.Reflection;
 using System.Data;
 using System.Net.Mail;
 using System.Net.Mime;
+using Inventario2.Models;
+using Inventario2.Services;
 
 namespace Inventario2
 {
@@ -41,7 +43,7 @@ namespace Inventario2
         }
 
 
-        public bool CreatePDF(Movimientos movimientos, DataTable tablacarrito, Model.Usuario User)
+        public bool CreatePDF(ModelMovements movimientos, DataTable tablacarrito, ModelUser User,int tipomov)
         {
             try
             {
@@ -69,14 +71,24 @@ namespace Inventario2
                 //DRAW THE MAIN TITLE
                 PdfFont Headfont = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
                 //Creates a text element to add the invoice number
-                PdfTextElement headelement = new PdfTextElement("AUDIO VIDEO STUDIOS ", Headfont);
+                PdfTextElement headelement = new PdfTextElement("AUDIO VIDEO SOLUTIONS ", Headfont);
                 headelement.Brush = PdfBrushes.Red;
                 PdfLayoutResult result = headelement.Draw(page, new PointF(graphics.ClientSize.Width - 350, graphics.ClientSize.Height - 740));
 
 
                 PdfFont Subtitle = new PdfStandardFont(PdfFontFamily.Helvetica, 14);
                 //Creates a text element to add the invoice number
-                PdfTextElement subtitelement = new PdfTextElement("ORDEN DE SALIDA ", Subtitle);
+                string hd = "ORDEN DE MOVIMIENTO";
+                if (tipomov == 1) 
+                {
+                    hd = "ORDEN DE ENTRADA ";
+                }
+                if(tipomov == 2)
+                {
+                    hd = "ORDEN DE SALIDA ";
+                }
+               
+                PdfTextElement subtitelement = new PdfTextElement(hd, Subtitle);
                 subtitelement.Brush = PdfBrushes.Red;
                 PdfLayoutResult Subresult = subtitelement.Draw(page, new PointF(graphics.ClientSize.Width - 300, graphics.ClientSize.Height - 710));
 
@@ -108,7 +120,7 @@ namespace Inventario2
 
 
                 //variables de campos
-                PdfTextElement lugar = new PdfTextElement(movimientos.lugar, campofont);
+                PdfTextElement lugar = new PdfTextElement(movimientos.Lugar, campofont);
                 lugar.Brush = PdfBrushes.Black;
                 PdfLayoutResult reslugar = lugar.Draw(page, new PointF(bounds.Left + 40, bounds.Top));
 
@@ -177,7 +189,7 @@ namespace Inventario2
 
                 //texto de quien entrega
                 PdfFont usuarioentregafont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12);
-                PdfTextElement lbusuarioentrega = new PdfTextElement(Model.User.nombre + " " + Model.User.apellido_paterno, usuarioentregafont);
+                PdfTextElement lbusuarioentrega = new PdfTextElement(Model.CurrentUser.nombre + " " + Model.CurrentUser.apellido_paterno, usuarioentregafont);
                 lbusuarioentrega.Brush = PdfBrushes.Black;
                 PdfLayoutResult reslbusuarioentrega = lbusuarioentrega.Draw(gridResult.Page, new PointF(linePen.Width / 2.0f, startPoint.Y - 20));
 
@@ -212,7 +224,18 @@ namespace Inventario2
 
 
                 bool res = SendSTMPT(bytes, correo);
-                string save = "OrdenDeSalida-" + movimientos.ID;
+
+                
+                if (tipomov == 1)
+                {
+                    hd = "OrdendeEntrada";
+                }
+                if (tipomov == 2)
+                {
+                    hd = "OrdendeSalida";
+                }
+
+                string save = hd + movimientos.IDmovimiento;
                 //Save the stream as a file in the device and invoke it for viewing
                 // Xamarin.Forms.DependencyService.Get<ISave>().SaveAndView(save + ".pdf", "application/pdf", stream);
                 //The operation in Save under Xamarin varies between Windows Phone, Android and iOS platforms. Please refer PDF/Xamarin section for respective code samples.
@@ -243,40 +266,41 @@ namespace Inventario2
             tablacarrito = new DataTable();
             try
             {
-                List<Movimientos> lista = await queryData(IdSalida);
-                if (lista.Count != 0)
+                List<ModelMovements> lista = await queryData(IdSalida);
+
+                if (lista == null)
                 {
-                    List<Model.Usuario> listaUsuario = await getUser(lista[0].usuario);
-                    //fill table
-                    if (listaUsuario.Count != 0)
-                    {
-                        correo = Model.User.correo;
-                    }
-
-                    tablacarrito.Columns.Add("CANT", typeof(int));
-                    tablacarrito.Columns.Add("CODIGO", typeof(string));
-                    tablacarrito.Columns.Add("DESCRP", typeof(string));
-                    tablacarrito.Columns.Add("MARCA", typeof(string));
-                    tablacarrito.Columns.Add("MODELO", typeof(string));
-                    tablacarrito.Columns.Add("SERIE", typeof(string));
-
-
-
-                    foreach (Movimientos mov in lista)
-                    {
-                        tablacarrito.Rows.Add(mov.cantidad, mov.codigo, mov.producto, mov.marca, mov.modelo, mov.serie);
-                    }
-
-
-                    CreatePDF(lista[0], tablacarrito, listaUsuario[0]);
-                    tablacarrito.Dispose();
+                    return;
                 }
-                else
+
+                List<ModelUser> listaUsuario = await getUser(lista[0].IDusuario);
+                //fill table
+                if (listaUsuario.Count != 0)
+                {
+                    correo = Model.CurrentUser.correo;
+                }
+
+                tablacarrito.Columns.Add("CANT", typeof(string));
+                tablacarrito.Columns.Add("CODIGO", typeof(string));
+                tablacarrito.Columns.Add("DESCRP", typeof(string));
+                tablacarrito.Columns.Add("MARCA", typeof(string));
+                tablacarrito.Columns.Add("MODELO", typeof(string));
+                tablacarrito.Columns.Add("SERIE", typeof(string));
+
+
+
+                foreach (ModelMovements mov in lista)
                 {
 
+                    tablacarrito.Rows.Add(mov.cantidad, mov.codigo, mov.producto, mov.marca, mov.modelo, mov.serie);
                 }
+
+
+                CreatePDF(lista[0], tablacarrito, listaUsuario[0],lista[0].IDtipomov);
+                tablacarrito.Dispose();
+                
             }
-            catch
+            catch(Exception ex)
             {
                 await DisplayAlert("Error", "Error de consulta", "Aceptar");
             }
@@ -284,14 +308,37 @@ namespace Inventario2
 
         }
 
-        private async Task<List<Movimientos>> queryData(string IDsalida)
+        private async Task<List<ModelMovements>> queryData(string IDsalida)
         {
             try
             {
-                var table = await App.MobileService.GetTable<Movimientos>().Where(u => u.ID == IDsalida).ToListAsync();
+                //var table = await App.MobileService.GetTable<Movimientos>().Where(u => u.ID == IDsalida).ToListAsync();
+                var listamoves = await MovementService.searchmovements(IDsalida, 0, 0, 0, null, null, null, null, null, null);
+                if (listamoves==null)
+                {
+                    await DisplayAlert("buscando", "error de conexion", "Aceptar");
+                    return null;
+                }
 
+                if (listamoves[0].statuscode == 500)
+                {
+                    await DisplayAlert("buscando", "error interno en el servidor", "Aceptar");
+                    return null;
+                }
 
-                return table;
+                if (listamoves[0].statuscode == 404)
+                {
+                    await DisplayAlert("buscando", "no encontrado", "Aceptar");
+                    return null;
+                }
+
+                if (listamoves[0].statuscode == 200 || listamoves[0].statuscode == 201)
+                {
+                    return listamoves;
+                }
+
+                return listamoves;
+
             }
             catch
             {
@@ -302,14 +349,43 @@ namespace Inventario2
 
         }
 
-        private async Task<List<Model.Usuario>> getUser(string usuario)
+        private async Task<List<ModelUser>> getUser(int usuario)
         {
             try
             {
-                var table = await App.MobileService.GetTable<Model.Usuario>().Where(u => u.nombre == usuario).ToListAsync();
+
+                var usuarios = await UserService.getuser(usuario);
+
+                if (usuarios == null)
+                {
+                    await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
+
+                    return null;
+                }
 
 
-                return table;
+                if (usuarios[0].statuscode == 500)
+                {
+                    await DisplayAlert("Error", "Error interno en el servidor", "Aceptar");
+                    return null;
+                }
+
+                if (usuarios[0].statuscode == 404)
+                {
+                    await DisplayAlert("Error", "no encontrado", "Aceptar");
+                    return null;
+                }
+
+                if (usuarios[0].statuscode == 200 || usuarios[0].statuscode == 201)
+                {
+                    
+                    return usuarios;
+                }
+
+                //var table = await App.MobileService.GetTable<Model.Usuario>().Where(u => u.nombre == usuario).ToListAsync();
+
+
+                return usuarios;
             }
             catch
             {

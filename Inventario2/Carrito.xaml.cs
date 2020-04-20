@@ -65,8 +65,8 @@ namespace Inventario2
                     break;
                 }
             }
-            if (re.f1 == null)
-                re.f1.Remove(re.f1[x]);
+            if(re.f1==null)
+            re.f1.Remove(re.f1[x]);
             re.movimientos.Remove(product);
 
             postListView.ItemsSource = null;

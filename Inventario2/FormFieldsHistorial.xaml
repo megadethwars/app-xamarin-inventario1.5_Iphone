@@ -21,7 +21,7 @@
                Source="nuevofondo.png" Aspect="Fill"/>
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <StackLayout Padding="37,40,37,10">
+            <StackLayout Padding="37,0,37,10">
                 <StackLayout
             Padding="0,20,0,30">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
@@ -51,12 +51,21 @@
                    TextColor="White"/>
                 </StackLayout>
                 <StackLayout Padding="40,0,20,10">
-                    <Entry Text="" x:Name="InUsuario"
-                   BackgroundColor="Gray"
-                   PlaceholderColor="White"
-                   Placeholder="Introduzca Usuario"
-                   TextColor="White"/>
+
+                    <Picker x:Name="pickeruser"
+                        Title="usuario"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        TitleColor="White"
+                        SelectedIndexChanged="PickerUser_SelectedIndexChanged">
+                        <!--<Picker.Items>
+                        <x:String>Usuario</x:String>
+                        <x:String>Administrador</x:String>
+                        <x:String>Almacen</x:String>
+                    </Picker.Items>-->
+                    </Picker>
                 </StackLayout>
+                
                 <StackLayout>
                     <Label Text="ID Product:"
                 CharacterSpacing="2"
@@ -82,11 +91,19 @@
                    />
                 </StackLayout>
                 <StackLayout Padding="40,0,20,10">
-                    <Entry Text="" x:Name="InUbicacion"
-                   BackgroundColor="Gray"
-                   PlaceholderColor="White"
-                   Placeholder="Introduzca ubicacion"
-                   TextColor="White"/>
+
+                    <Picker x:Name="pickertipomov"
+                        Title="tipo de movimiento"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        TitleColor="White"
+                        SelectedIndexChanged="pickertipomov_SelectedIndexChanged">
+                        <!--<Picker.Items>
+                        <x:String>Usuario</x:String>
+                        <x:String>Administrador</x:String>
+                        <x:String>Almacen</x:String>
+                    </Picker.Items>-->
+                    </Picker>
                 </StackLayout>
 
                 <StackLayout>
@@ -106,6 +123,29 @@
                 </StackLayout>
                 <StackLayout>
                     <Label Text="UBICACION:" 
+                   TextColor="White"
+                   CharacterSpacing="2"
+               FontFamily="Montserrat-Bold"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="40,0,20,10">
+
+                    <Picker x:Name="pickerlugar"
+                        Title="Seleccionar la ubicacion"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        TitleColor="White"
+                        SelectedIndexChanged="Pickerlugar_SelectedIndexChanged">
+                        <!--<Picker.Items>
+                        <x:String>Usuario</x:String>
+                        <x:String>Administrador</x:String>
+                        <x:String>Almacen</x:String>
+                    </Picker.Items>-->
+                    </Picker>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="MODELO:" 
                    TextColor="White"
                    CharacterSpacing="2"
                FontFamily="Montserrat-Bold"

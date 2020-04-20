@@ -40,13 +40,13 @@ namespace Inventario2
         {
             search.Focus();
             base.OnAppearing();
-            if (movimientos.Count > 0)
+            if (movimientos.Count>0)
             {
-                for (int x = 0; x < movimientos.Count; x++)
+                for(int x =0;x<movimientos.Count;x++)
                 {
-                    for (int y = x + 1; y < movimientos.Count; y++)
+                    for(int y = x+1; y<movimientos.Count;y++)
                     {
-                        if (movimientos[x].codigo == movimientos[y].codigo)
+                        if(movimientos[x].codigo == movimientos[y].codigo)
                         {
                             movimientos.Remove(movimientos[y]);
                         }
@@ -54,9 +54,9 @@ namespace Inventario2
                 }
             }
             BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
-
+            
             p = Guid.NewGuid().ToString("D");
-
+            
 
         }
 
@@ -129,8 +129,8 @@ namespace Inventario2
                     }
 
                     //users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.nombre == search.Text).ToListAsync();
-
-
+                    
+                    
                 }
                 else
                 {
@@ -169,11 +169,11 @@ namespace Inventario2
                             foto.Source = devices[0].foto;
                         Llenar(devices[0]);
                         BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
-                    }
+                    } 
 
 
                     //users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == search.Text).ToListAsync();
-
+                   
                 }
             }
             else
@@ -184,7 +184,7 @@ namespace Inventario2
         private void SearchBar(object sender, EventArgs e)
         {
             busqueda();
-
+            
         }
 
         private void Scan(object sender, EventArgs e)
@@ -195,11 +195,10 @@ namespace Inventario2
 
         private void Llenar(ModelDevice device)
         {
-            ModelMovements moves = new ModelMovements
-            {
-
-
-
+            ModelMovements moves = new ModelMovements {
+                
+                
+                
                 //fecha = DateTime.Now.ToString("dd/MM/yyyy")
             };
 
@@ -215,7 +214,7 @@ namespace Inventario2
             moves.codigo = device.codigo;
             movimientos.Add(moves);
 
-
+            
             f2.Add(f);
             f1.Add(f);
             f = null;

@@ -55,7 +55,7 @@ namespace Inventario2
             {
 
             }
-
+            
         }
 
         private void Button_Clicked(object sender, EventArgs e)

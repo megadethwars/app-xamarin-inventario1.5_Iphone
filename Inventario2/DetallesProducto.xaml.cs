@@ -11,7 +11,7 @@ using Inventario2.Models;
 namespace Inventario2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-
+    
     public partial class DetallesProducto : ContentPage
     {
         public ModelDevice n;
@@ -54,23 +54,23 @@ namespace Inventario2
                     {
                         //await App.MobileService.GetTable<InventDB>().DeleteAsync(n);
                         //var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
-                        // var client = account.CreateCloudBlobClient();
-                        // var container = client.GetContainerReference("fotosinventario");
-                        // await container.CreateIfNotExistsAsync();
-                        // var block = container.GetBlockBlobReference($"{n.foto}");
-                        // await block.DeleteIfExistsAsync();
-                        // await DisplayAlert("Hecho", "Producto borrado exitosamente", "Aceptar");
-                        // await Navigation.PopAsync();
+                       // var client = account.CreateCloudBlobClient();
+                       // var container = client.GetContainerReference("fotosinventario");
+                       // await container.CreateIfNotExistsAsync();
+                       // var block = container.GetBlockBlobReference($"{n.foto}");
+                       // await block.DeleteIfExistsAsync();
+                       // await DisplayAlert("Hecho", "Producto borrado exitosamente", "Aceptar");
+                       // await Navigation.PopAsync();
                     }
                     catch (MobileServiceInvalidOperationException ms)
                     {
 
                         Console.WriteLine(ms.Message);
-                        await DisplayAlert("Error", "Error al borrar el producto", "Aceptar");
+                       await  DisplayAlert("Error", "Error al borrar el producto", "Aceptar");
 
                     }
-                    break;
-
+                        break;
+                    
             }
         }
 

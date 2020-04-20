@@ -35,16 +35,16 @@ namespace Inventario2
         }
 
 
-        protected override void OnAppearing()
+        protected override  void OnAppearing()
         {
             base.OnAppearing();
 
-
+            
 
         }
 
 
-
+     
         private async Task<bool> verifyuser(string user, string password)
         {
             LoginUser logus = new LoginUser();
@@ -221,12 +221,12 @@ namespace Inventario2
                 await block.UploadFromStreamAsync(stream);
                 string url = block.Uri.OriginalString;
             }
-            catch
+            catch 
             {
 
             }
 
-
+            
 
         }
 

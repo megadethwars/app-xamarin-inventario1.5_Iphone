@@ -8,7 +8,9 @@ using Microsoft.WindowsAzure.Storage;
 using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Inventario2.Models;
+using Inventario2.Services;
+using Newtonsoft.Json;
 
 namespace Inventario2
 {
@@ -18,8 +20,8 @@ namespace Inventario2
         Plugin.Media.Abstractions.MediaFile camara;
         public bool isScanning = false;
         public string scanText;
-        private InventDB device;
-        private Model.Reportes reporte;
+        private ModelDevice device;
+        private ModelReport reporte;
         private string ID = Guid.NewGuid().ToString();
 
         private bool isFull = false;
@@ -27,8 +29,8 @@ namespace Inventario2
         public string stringphoto;
         public LevantarReporte(string c)
         {
-            reporte = new Model.Reportes();
-            device = new InventDB();
+            reporte = new ModelReport();
+            device = new ModelDevice();
             InitializeComponent();
             nombreID.Text = c;
 
@@ -45,7 +47,7 @@ namespace Inventario2
                 nombreID.Text = scanText;
 
                 //search device
-                List<InventDB> tabladevice = await QueryDevice(scanText);
+                List<ModelDevice> tabladevice = await QueryDevice(scanText);
                 fillDevice(tabladevice);
                 isScanning = false;
 
@@ -53,12 +55,12 @@ namespace Inventario2
 
         }
 
-        private async void fillDevice(List<InventDB> tabla)
+        private async void fillDevice(List<ModelDevice> tabla)
         {
             try
             {
                 device = tabla[0];
-                lbNombre.Text = device.nombre;
+                lbNombre.Text = device.producto;
                 lbMarca.Text = device.marca;
                 lbSerie.Text = device.serie;
                 lbModelo.Text = device.modelo;
@@ -83,7 +85,7 @@ namespace Inventario2
 
         }
 
-        public async void Button_Clicked(object sender, System.EventArgs e)
+        public  void Button_Clicked(object sender, System.EventArgs e)
         {
 
 
@@ -112,7 +114,7 @@ namespace Inventario2
                 return true;
             await DisplayAlert("File Location", camara.Path, "OK");
             imagen.Source = camara.Path;
-            imagen.RotateTo(90);
+            await imagen.RotateTo(90);
             camara.GetStream();
 
             return false;
@@ -128,7 +130,7 @@ namespace Inventario2
             Navigation.PushAsync(new ScannerReporte(this));
         }
 
-        private async void OnEnterPressed(object sender, EventArgs e)
+        private  void OnEnterPressed(object sender, EventArgs e)
         {
            
         }
@@ -137,16 +139,18 @@ namespace Inventario2
 
             if (isFull)
             {
-                reporte.foto = Guid.NewGuid().ToString();
-                string id = reporte.foto;
+                reporte.foto2 = Guid.NewGuid().ToString();
+                string id = reporte.foto2;
                 reporte.codigo = device.codigo;
                 reporte.marca = device.marca;
                 reporte.serie = device.serie;
                 reporte.modelo = device.modelo;
-                reporte.producto = device.nombre;
+                reporte.producto = device.producto;
                 reporte.comentario = editor.Text;
-                reporte.ID = id;
+                reporte.IDreporte = id;
                 PathFoto = id;
+                reporte.IDdevice = device.ID;
+                reporte.IDusuario = Model.CurrentUser.ID;
                 bool res = await PostReport(reporte);
 
                 //enviar foto
@@ -171,12 +175,32 @@ namespace Inventario2
 
         }
 
-        private async Task<List<InventDB>> QueryDevice(string codigo)
+        private async Task<List<ModelDevice>> QueryDevice(string codigo)
         {
 
             try
             {
-                var table = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == codigo).ToListAsync();
+                //var table = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == codigo).ToListAsync();
+
+
+                var table = await DeviceService.getdevicebycode(codigo);
+
+                if (table == null)
+                {
+                    return null;
+                }
+
+                if (table[0].statuscode == 500)
+                {
+                    return null;
+                }
+
+                if (table[0].statuscode == 404)
+                {
+                    return null;
+                }
+
+
 
                 return table;
             }
@@ -188,16 +212,69 @@ namespace Inventario2
 
         }
 
-        private async Task<bool> PostReport(Model.Reportes reporte)
+        private async Task<bool> PostReport(ModelReport reporte)
         {
 
 
             try
             {
-                await App.MobileService.GetTable<Model.Reportes>().InsertAsync(reporte);
+
+
+
+                //await App.MobileService.GetTable<Model.Reportes>().InsertAsync(reporte);
+                //device.observaciones = reporte.comentario;
+                //await App.MobileService.GetTable<InventDB>().UpdateAsync(device);
+                //return true;
+
+                var status = await ReportService.postreport(JsonConvert.SerializeObject(reporte));
+                if (status == null)
+                {
+
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+
+                    return false;
+                }
+
+                if (status.statuscode == 500)
+                {
+                    await DisplayAlert("actualizando", "error interno del servidor", "OK");
+
+                    return false;
+                }
+
+                if (status.statuscode == 201)
+                {
+                    await DisplayAlert("Agregado", "Producto agregado correctamente", "Aceptar");
+                    await Navigation.PopAsync();
+                }
+
                 device.observaciones = reporte.comentario;
-                await App.MobileService.GetTable<InventDB>().UpdateAsync(device);
+                /////////////////////actualizar device
+                ///
+                status = await DeviceService.putdevice(device.ID,JsonConvert.SerializeObject(device));
+                if (status == null)
+                {
+
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+
+                    return false;
+                }
+
+                if (status.statuscode == 500)
+                {
+                    await DisplayAlert("actualizando", "error interno del servidor", "OK");
+
+                    return false;
+                }
+
+                if (status.statuscode == 201 || status.statuscode==200)
+                {
+                    await DisplayAlert("Agregado", "Producto actualizado correctamente", "Aceptar");
+                    await Navigation.PopAsync();
+                }
+
                 return true;
+
             }
             catch (Exception ex)
             {
@@ -244,7 +321,7 @@ namespace Inventario2
         {
             if (nombreID != null)
             {
-                List<InventDB> tabladevice = await QueryDevice(nombreID.Text);
+                List<ModelDevice> tabladevice = await QueryDevice(nombreID.Text);
                 fillDevice(tabladevice);
             }
         }

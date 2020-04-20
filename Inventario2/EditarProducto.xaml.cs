@@ -12,7 +12,7 @@ namespace Inventario2
     {
         DetallesProducto pro;
         ModelDevice pr;
-
+        
         public EditarProducto(DetallesProducto nu)
         {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace Inventario2
         {
             if (idProducto.Text != "")
                 pr.producto = idProducto.Text;
-            if (idMarca.Text != "")
+            if(idMarca.Text != "")
                 pr.marca = idMarca.Text;
             if (idModelo.Text != "")
                 pr.modelo = idModelo.Text;
@@ -54,11 +54,11 @@ namespace Inventario2
             if (idOrigen.Text != "")
                 pr.origen = idOrigen.Text;
             if (idCosto.Text != "")
-                pr.costo = idCosto.Text;
+                pr.costo= idCosto.Text;
             if (idProveedor.Text != "")
                 pr.proveedor = idProveedor.Text;
             if (idCompra.Text != "")
-                pr.compra = idCompra.Text;
+                pr.compra= idCompra.Text;           
             if (idAcces.Text != "")
                 pr.pertenece = idAcces.Text;
             if (idDesc.Text != "")
@@ -73,20 +73,20 @@ namespace Inventario2
 
                         await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
 
-                        return;
+                        return ;
                     }
 
                     if (status.statuscode == 500)
                     {
                         await DisplayAlert("actualizando", "error interno del servidor", "OK");
 
-                        return;
+                        return ;
                     }
 
                     if (status.statuscode == 201 || status.statuscode == 200)
                     {
                         await DisplayAlert("Agregado", "Producto actualizado correctamente", "Aceptar");
-
+                        
                     }
 
 
@@ -107,7 +107,7 @@ namespace Inventario2
                 }
             }
             else
-                await DisplayAlert("Error", "Faltan campos por llenar", "Aceptar");
+                await DisplayAlert("Error", "Faltan campos por llenar","Aceptar");
 
         }
     }

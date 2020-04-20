@@ -20,41 +20,41 @@ namespace Inventario2
         public MainPage()
         {
             InitializeComponent();
-
-            //this.BackgroundImageSource = "image1.jpeg";
-
+            
+           //this.BackgroundImageSource = "image1.jpeg";
+            
         }
 
 
-        private void OnEnterPressed(object sender, EventArgs e)
+        private  void OnEnterPressed(object sender, EventArgs e)
         {
-            IniciarSesion(null, null);
+             IniciarSesion(null, null);
         }
 
         private async void IniciarSesion(object sender, EventArgs e)
         {
-
-            try
-            {
-                if (nameEntry.Text != null && passEntry.Text != null)
-                {
+            
+             try
+             {
+                 if (nameEntry.Text != null && passEntry.Text != null)
+                 {
                     //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == nameEntry.Text).ToListAsync();
                     LoginUser logus = new LoginUser();
                     logus.nombre = nameEntry.Text;
                     logus.password = passEntry.Text;
                     var status = await UserService.loginAsync(JsonConvert.SerializeObject(logus));
 
-                    if (status != null)
-                    {
+                    if (status!=null)
+                     {
 
-                        if (status.statuscode == 404)
+                        if(status.statuscode == 404)
                         {
                             await DisplayAlert("Error", "Usuario no encontrado", "Aceptar");
 
                             return;
                         }
 
-                        if (status.statuscode == 401)
+                        if(status.statuscode == 401)
                         {
                             await DisplayAlert("Error", "Usuario y/o contraseña incorrecto", "Aceptar");
                             return;
@@ -67,7 +67,7 @@ namespace Inventario2
 
                         }
 
-                        if (status.statuscode == 201 || status.statuscode == 200)
+                        if (status.statuscode==201 || status.statuscode ==200)
                         {
                             //query this user
                             var usuarios = await UserService.getuserbyname(logus.nombre);
@@ -87,27 +87,27 @@ namespace Inventario2
                             }
 
 
-                            logus.Dispose();
+                            logus.Dispose();                                              
                             await Navigation.PushAsync(new Menu(usuarios[0]));
-
-
+                                    
+                                                           
                         }
-
-                    }
-                    else
-                        await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
-                }
-                else
-                    await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
-            }
-            catch (Exception ex)
-            {
+                                           
+                     }
+                     else
+                         await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
+                 }
+                 else
+                     await DisplayAlert("Error", "Usuario o contraseña no ingresado(s)", "Aceptar");
+             }
+             catch(Exception ex)
+             {
                 Console.WriteLine(ex.Message);
-                await DisplayAlert("Error", "Error de Conexion con el Servidor", "Aceptar");
-            }
+                 await DisplayAlert("Error", "Error de Conexion con el Servidor", "Aceptar");
+             }
 
-
-
+             
+            
         }
     }
 }

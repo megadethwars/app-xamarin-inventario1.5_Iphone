@@ -154,9 +154,9 @@
                                                     
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Text="{Binding usuario}" BackgroundColor="Gray" TextColor="White" Grid.Column="0"/>
+                                                <Label Text="{Binding nombre}" BackgroundColor="Gray" TextColor="White" Grid.Column="0"/>
                                                 <Label Text="{Binding producto}" BackgroundColor="Gray" TextColor="White" Grid.Column="1"/>
-                                                <Label Text="{Binding movimiento}" BackgroundColor="Gray" TextColor="White" Grid.Column="2"/>
+                                                <Label Text="{Binding tipomovimiento}" BackgroundColor="Gray" TextColor="White" Grid.Column="2"/>
                                                 
                                                 
 

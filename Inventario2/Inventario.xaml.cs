@@ -26,12 +26,12 @@ namespace Inventario2
         public Inventario()
         {
             InitializeComponent();
-
+            
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
+            
             search.Text = stringcode;
             tipoBusqueda = pickerBuscar.SelectedItem as String;
             search.Focus();
@@ -45,7 +45,7 @@ namespace Inventario2
                     return;
                 }
 
-                if (busqueda[0].statuscode == 500)
+                if (busqueda[0].statuscode==500)
                 {
                     return;
                 }
@@ -64,7 +64,7 @@ namespace Inventario2
                         cont = 0;
                 }
 
-
+                
             }
             else
             {
@@ -76,23 +76,23 @@ namespace Inventario2
                     return;
                 }
 
-                if (devices[0].statuscode == 500)
+                if (devices[0].statuscode==500)
                 {
                     return;
                 }
 
-                if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                if (devices[0].statuscode==200 || devices[0].statuscode == 201)
                 {
                     postListView.ItemsSource = devices;
                 }
 
-
+                
             }
-
-
+            
+            
         }
 
-
+        
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
@@ -106,7 +106,7 @@ namespace Inventario2
 
             }
 
-
+            
         }
 
         public async void buscar()
@@ -117,9 +117,9 @@ namespace Inventario2
             var isNumeric = long.TryParse(cadena, out long n);
 
 
-            if (tipoBusqueda == "producto")
+            if (tipoBusqueda=="producto")
             {
-
+               
                 var devices = await DeviceService.getdevicebyproduct(search.Text);
                 if (devices == null)
                 {
@@ -140,15 +140,15 @@ namespace Inventario2
                     return;
                 }
 
-                if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                if (devices[0].statuscode==200 || devices[0].statuscode == 201)
                 {
                     postListView.ItemsSource = devices;
                 }
 
 
-
+                
             }
-            if (tipoBusqueda == "QR")
+            if(tipoBusqueda=="QR")
             {
 
                 var devices = await DeviceService.getdevicebycode(search.Text);
@@ -292,7 +292,7 @@ namespace Inventario2
                 }
             }
         }
-        private void SearchBar(object sender, EventArgs e)
+        private  void SearchBar(object sender, EventArgs e)
         {
             buscar();
         }
@@ -303,117 +303,117 @@ namespace Inventario2
         }
         public async void Checar()
         {
-
+            
             f = await CrossFilePicker.Current.PickFile();
 
             if (f != null)
             {
-                var t = DisplayAlert("Excel", f.FileName, "aceptar");
-
-                ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true, IsVisible = true, IsEnabled = true };
-                ExcelEngine excelEngine = new ExcelEngine();
-                IApplication application = excelEngine.Excel;
-                application.DefaultVersion = ExcelVersion.Excel2013;
-
-
-                IWorkbook workbook = application.Workbooks.Open(f.GetStream());
-
-                //Access first worksheet from the workbook.
-                IWorksheet worksheet = workbook.Worksheets[1];
+                var t = DisplayAlert("Excel",f.FileName,"aceptar");
+                
+                    ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true, IsVisible = true, IsEnabled = true };
+                    ExcelEngine excelEngine = new ExcelEngine();
+                    IApplication application = excelEngine.Excel;
+                    application.DefaultVersion = ExcelVersion.Excel2013;
 
 
-                //Filas.
-                for (int x = 2; x < 1514; x++)
-                {
-                    //columnas
+                    IWorkbook workbook = application.Workbooks.Open(f.GetStream());
 
-                    var strs = worksheet.GetText(x, 2);
-
-                    //list = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == strs).ToListAsync();
-
-
-                    var devices = await DeviceService.getdevicebyserie(search.Text);
-                    if (devices == null)
+                    //Access first worksheet from the workbook.
+                    IWorksheet worksheet = workbook.Worksheets[1];
+                    
+                    
+                    //Filas.
+                    for (int x = 2; x < 1514; x++)
                     {
+                        //columnas
 
-                        await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
-                        return;
-                    }
+                        var strs = worksheet.GetText(x, 2);
 
-                    if (devices[0].statuscode == 500)
-                    {
-                        await DisplayAlert("Buscando", "error interno del servidor", "OK");
-                        return;
-                    }
+                        //list = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == strs).ToListAsync();
 
-                    if (devices[0].statuscode == 404)
-                    {
-                        await DisplayAlert("Buscando", "producto no encontrado", "OK");
 
-                        var id = Guid.NewGuid().ToString();
-                        ModelDevice n = new ModelDevice
+                        var devices = await DeviceService.getdevicebyserie(search.Text);
+                        if (devices == null)
                         {
 
-                            codigo = strs,
-                            serie = worksheet.GetText(x, 1),
-                            compra = worksheet.GetText(x, 8),
-                            costo = worksheet.GetText(x, 6),
-                            descompostura = worksheet.GetText(x, 11),
-                            marca = worksheet.GetText(x, 4),
-                            modelo = worksheet.GetText(x, 5),
-                            producto = worksheet.GetText(x, 3),
-                            observaciones = worksheet.GetText(x, 9),
-                            origen = worksheet.GetText(x, 7),
-                            pertenece = worksheet.GetText(x, 10),
-                            //ID = id,
-                            IDlugar = 1,
-                        };
+                            await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+                            return;
+                        }
 
-                        await DeviceService.postdevice(JsonConvert.SerializeObject(n));
-                        //await App.MobileService.GetTable<InventDB>().InsertAsync(n);
+                        if (devices[0].statuscode == 500)
+                        {
+                            await DisplayAlert("Buscando", "error interno del servidor", "OK");
+                            return;
+                        }
 
+                        if (devices[0].statuscode == 404)
+                        {
+                            await DisplayAlert("Buscando", "producto no encontrado", "OK");
+
+                            var id = Guid.NewGuid().ToString();
+                            ModelDevice n = new ModelDevice
+                            {
+
+                                codigo = strs,
+                                serie = worksheet.GetText(x, 1),
+                                compra = worksheet.GetText(x, 8),
+                                costo = worksheet.GetText(x, 6),
+                                descompostura = worksheet.GetText(x, 11),
+                                marca = worksheet.GetText(x, 4),
+                                modelo = worksheet.GetText(x, 5),
+                                producto = worksheet.GetText(x, 3),
+                                observaciones = worksheet.GetText(x, 9),
+                                origen = worksheet.GetText(x, 7),
+                                pertenece = worksheet.GetText(x, 10),
+                                //ID = id,
+                                IDlugar = 1,
+                            };
+
+                            await DeviceService.postdevice(JsonConvert.SerializeObject(n));
+                            //await App.MobileService.GetTable<InventDB>().InsertAsync(n);
+
+                        
+                        }
+
+                        if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
+                        {
+                            devices[0].compra = worksheet.GetText(x, 8);
+                            devices[0].costo = worksheet.GetText(x, 6);
+                            devices[0].descompostura = worksheet.GetText(x, 11);
+                            devices[0].marca = worksheet.GetText(x, 4);
+                            devices[0].modelo = worksheet.GetText(x, 5);
+                            devices[0].producto = worksheet.GetText(x, 3);
+                            devices[0].observaciones = worksheet.GetText(x, 9);
+                            devices[0].origen = worksheet.GetText(x, 7);
+                            devices[0].pertenece = worksheet.GetText(x, 10);                          
+                            devices[0].serie = worksheet.GetText(x, 1);
+                            await DeviceService.putdevice(devices[0].ID,JsonConvert.SerializeObject(devices[0]) );
+                            //await App.MobileService.GetTable<InventDB>().UpdateAsync(list[0]);
+                        }
+
+
+                        
 
                     }
-
-                    if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
-                    {
-                        devices[0].compra = worksheet.GetText(x, 8);
-                        devices[0].costo = worksheet.GetText(x, 6);
-                        devices[0].descompostura = worksheet.GetText(x, 11);
-                        devices[0].marca = worksheet.GetText(x, 4);
-                        devices[0].modelo = worksheet.GetText(x, 5);
-                        devices[0].producto = worksheet.GetText(x, 3);
-                        devices[0].observaciones = worksheet.GetText(x, 9);
-                        devices[0].origen = worksheet.GetText(x, 7);
-                        devices[0].pertenece = worksheet.GetText(x, 10);
-                        devices[0].serie = worksheet.GetText(x, 1);
-                        await DeviceService.putdevice(devices[0].ID, JsonConvert.SerializeObject(devices[0]));
-                        //await App.MobileService.GetTable<InventDB>().UpdateAsync(list[0]);
-                    }
-
-
-
-
-                }
-                activityIndicator.IsRunning = false;
-
+                    activityIndicator.IsRunning = false;
+                
             }
-
+            
         }
 
         private async void MenuOp(object sender, EventArgs e)
         { //Despegar menu de  3 opciones Ingresar, Retirar, Detalles
-            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida", "Actualizar BD");
+            string res = await DisplayActionSheet("Opciones", "Cancelar", null, "Agregar Nuevo Producto", "Reingresar Producto", "Salida","Actualizar BD");
             switch (res)
             {
                 case "Agregar Nuevo Producto":
                     //Abrir vista/pagina Detalles del Producto
                     await Navigation.PushAsync(new NuevoProducto());
-
+                    
                     break;
                 case "Reingresar Producto":
                     //Abrir vista/pagina Ingresar Producto
-                    await Navigation.PushAsync(new IngresarProducto());
+                    await Navigation.PushAsync(new IngresarProducto(  ));
                     break;
                 case "Salida":
                     //Abrir vista/pagina Retirar Producto
@@ -440,7 +440,7 @@ namespace Inventario2
 
         async void search_TextChanged(Object sender, TextChangedEventArgs e)
         {
-            if (search.Text == "")
+            if(search.Text=="")
             {
 
                 //var usuario = await App.MobileService.GetTable<InventDB>().ToListAsync();

@@ -49,7 +49,7 @@ namespace Inventario2
             }
             BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
             p = Guid.NewGuid().ToString("D");
-
+            
 
         }
 
@@ -120,7 +120,7 @@ namespace Inventario2
                         BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
                     }
 
-
+                    
                 }
                 else
                 {
@@ -153,14 +153,14 @@ namespace Inventario2
                         serietxt.Text = devices[0].serie;
                         pertenece.Text = devices[0].pertenece;
                         origentxt.Text = devices[0].origen;
-
+                       
                         if (!(devices[0].foto == ""))
                             foto.Source = devices[0].foto;
                         Llenar(devices[0]);
                         BotonCarrito.Text = "Carrito " + "(" + movimientos.Count.ToString() + ")";
                     }
 
-
+                    
                 }
             }
             else
@@ -182,8 +182,8 @@ namespace Inventario2
         {
             ModelMovements moves = new ModelMovements
             {
-
-            };
+                
+        };
 
             moves.IDmovimiento = "";
             moves.IDtipomov = 2;

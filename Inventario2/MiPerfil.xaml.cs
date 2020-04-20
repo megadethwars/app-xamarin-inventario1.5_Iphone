@@ -16,7 +16,7 @@ namespace Inventario2
         public MiPerfil(ModelUser u)
         {
             InitializeComponent();
-
+            
             idCorreo.Text = u.correo;
             name.Text = u.nombre + " " + u.apellido_paterno + " " + u.apellido_materno;
             idtel.Text = u.telefono;

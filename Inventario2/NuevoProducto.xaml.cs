@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.Storage;
 using Plugin.Media;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
+using Inventario2.Models;
+using Inventario2.Services;
 
 namespace Inventario2
 {
@@ -20,6 +21,7 @@ namespace Inventario2
         Plugin.Media.Abstractions.MediaFile f;
         public string PathFoto;
         public string stringphoto;
+        string url = "not url";
         public static MobileServiceClient client = new MobileServiceClient("https://inventarioavs.azurewebsites.net");
         public NuevoProducto()
         {
@@ -37,11 +39,12 @@ namespace Inventario2
         }
         private async void AgregarP(object sender, EventArgs e)
         {
-            InventDB invent = new InventDB
+            
+            ModelDevice device = new ModelDevice
             {
-                ID = PathFoto,
+                //ID = PathFoto,
                 codigo = codigoEntry.Text,
-                nombre = nameEntry.Text,
+                producto = nameEntry.Text,
                 marca = marca.Text,
                 modelo = modelo.Text,
                 costo = costo.Text,
@@ -50,22 +53,47 @@ namespace Inventario2
                 origen = origen.Text,
                 descompostura = dec.Text,
                 pertenece = pert.Text,
-                lugar = "Almacen",
+                IDlugar = 1,
                 cantidad = cant.Text,
                 observaciones = observ.Text,
                 proveedor = proveedor.Text,
                 foto = PathFoto + ".jpg",
-                Fecha = DateTime.Now.ToString("dd/MM/yyyy")
+                //Fecha = DateTime.Now.ToString("dd/MM/yyyy")
             };
 
             try
-            {
-                await App.MobileService.GetTable<InventDB>().InsertAsync(invent);
+            {               
+                    //await App.MobileService.GetTable<InventDB>().InsertAsync(invent);
                 if (!(f == null))
-                    UploadFile(f.GetStream());
+                {
+                    await UploadFile(f.GetStream());
+                }
 
-                await DisplayAlert("Agregado", "Producto agregado correctamente", "Aceptar");
-                await Navigation.PopAsync();
+                device.foto = url;
+
+                var status = await DeviceService.postdevice(JsonConvert.SerializeObject(device));
+                if (status == null)
+                {
+
+                    await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
+
+                    return;
+                }
+
+                if (status.statuscode == 500)
+                {
+                    await DisplayAlert("actualizando", "error interno del servidor", "OK");
+
+                    return;
+                }
+
+                if (status.statuscode == 201)
+                {
+                    await DisplayAlert("Agregado", "Producto agregado correctamente", "Aceptar");
+                    await Navigation.PopAsync();
+                }
+
+                
 
 
             }
@@ -110,18 +138,29 @@ namespace Inventario2
 
         }
 
-        private async void UploadFile(Stream stream)
+        private async Task<string>  UploadFile(Stream stream)
         {
-            var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
-            var client = account.CreateCloudBlobClient();
-            var container = client.GetContainerReference("fotosinventario");
-            await container.CreateIfNotExistsAsync();
+            try
+            {
+                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=NLazg0RjiUxSF9UvkeSWvNYicNDSUPn4IoXp4KSKXx0qe+W2bt40BrGFK6M+semkKHHOV5T4Ya2eNKDDQNY57A==;EndpointSuffix=core.windows.net");
+                var client = account.CreateCloudBlobClient();
+                var container = client.GetContainerReference("fotosinventario");
+                await container.CreateIfNotExistsAsync();
 
 
 
-            var block = container.GetBlockBlobReference($"{PathFoto}.jpg");
-            await block.UploadFromStreamAsync(stream);
-            string url = block.Uri.OriginalString;
+                var block = container.GetBlockBlobReference($"{PathFoto}.jpg");
+                await block.UploadFromStreamAsync(stream);
+                url = block.Uri.OriginalString;
+                return url;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "not url";
+            }
+
+            
         }
 
         void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)

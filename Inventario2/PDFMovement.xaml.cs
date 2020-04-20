@@ -354,7 +354,7 @@ namespace Inventario2
 
                 //texto de quien entrega
                 PdfFont usuarioentregafont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12);
-                PdfTextElement lbusuarioentrega = new PdfTextElement(Model.User.nombre + " " + Model.User.apellido_paterno, usuarioentregafont);
+                PdfTextElement lbusuarioentrega = new PdfTextElement(Model.CurrentUser.nombre + " " + Model.CurrentUser.apellido_paterno, usuarioentregafont);
                 lbusuarioentrega.Brush = PdfBrushes.Black;
                 PdfLayoutResult reslbusuarioentrega = lbusuarioentrega.Draw(gridResult.Page, new PointF(linePen.Width / 2.0f, startPoint.Y - 20));
 
@@ -511,7 +511,7 @@ namespace Inventario2
                     //fill table
                     if (listaUsuario.Count != 0)
                     {
-                        correo = Model.User.correo;
+                        correo = Model.CurrentUser.correo;
                     }
 
                     tablacarrito.Columns.Add("CANT", typeof(int));

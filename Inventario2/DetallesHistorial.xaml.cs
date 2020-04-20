@@ -6,26 +6,34 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Inventario2.Models;
 namespace Inventario2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetallesHistorial : ContentPage
     {
-        public DetallesHistorial(Movimientos mv)
+        public DetallesHistorial(ModelMovements mv)
         {
             InitializeComponent();
-            nameUser.Text = mv.usuario;
+            nameUser.Text = mv.nombre;
             nameProd.Text = mv.producto;
             idCodigo.Text = mv.codigo;
             idmarca.Text = mv.marca;
             idmodelo.Text = mv.modelo;
             idcantidad.Text = mv.cantidad;
-            idobserv.Text = mv.observ;
-            idlugar.Text = mv.lugar;
-            idMove.Text = mv.movimiento;
-            idFecha.Text = mv.fecha;
-            imagen.Source = "https://fotosavs.blob.core.windows.net/fotossalida/"+mv.foto;
+            idobserv.Text = mv.observacionesMov;
+            idlugar.Text = mv.Lugar;
+            idMove.Text = mv.tipomovimiento;
+            idFecha.Text = mv.fechamovimiento;
+            try
+            {
+                imagen.Source = "https://fotosavs.blob.core.windows.net/fotossalida/" + mv.fotomov1;
+            }
+            catch
+            {
+
+            }
+           
 
         }
 

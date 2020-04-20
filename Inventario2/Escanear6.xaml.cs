@@ -23,7 +23,7 @@ namespace Inventario2
             InitializeComponent();
             h = t;
         }
-        public void ScanPage(ZXing.Result result)
+        public  void ScanPage(ZXing.Result result)
         {
             Boolean boo = true;
             Device.BeginInvokeOnMainThread(async () =>
@@ -44,7 +44,7 @@ namespace Inventario2
                     {
                         DependencyService.Get<IMessage>().ShortAlert(result.Text);
 
-                        buscar(result.Text);
+                         buscar(result.Text);
                     }
 
                 }
@@ -103,9 +103,9 @@ namespace Inventario2
                 DependencyService.Get<IMessage>().ShortAlert(qr);
             }
 
-
-
-
+            
+            
+            
         }
 
         protected override void OnAppearing()
