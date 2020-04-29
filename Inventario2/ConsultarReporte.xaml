@@ -50,8 +50,8 @@
 
                                 <SearchBar x:Name="nombreID"
                     BackgroundColor="Gray"
-                    TextColor="White"
-                    PlaceholderColor="White"
+                    TextColor="Black"
+                    PlaceholderColor="Black"
 			        Placeholder="Buscar por nombre o ID"
 			        CancelButtonColor="Red"
 			        SearchButtonPressed="nombreID_SearchButtonPressed"

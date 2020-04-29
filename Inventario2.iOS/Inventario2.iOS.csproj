@@ -27,7 +27,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
+    <CodesignKey>Apple Development: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
@@ -44,7 +44,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
+    <CodesignKey>Apple Development: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,7 +56,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
+    <CodesignKey>Apple Development: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>
     </CodesignEntitlements>
@@ -74,7 +74,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
+    <CodesignKey>Apple Development: Alejandro Vazquez Robles (JY57N744EX)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
