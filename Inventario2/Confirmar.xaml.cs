@@ -26,6 +26,7 @@ namespace Inventario2
         private bool isToggled;
         private ModelUser usuariosalida;
         public int idlugar;
+      
         public Confirmar(Carrito x)
         {
             InitializeComponent();
@@ -158,7 +159,22 @@ namespace Inventario2
                                 rp.re.movimientos[y].fotomov1 = p.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
                                 rp.re.movimientos[y].fotomov2 = p.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
 
+                                v = true;
+                                string url1 = "N/A";
+                                string url2 = "N/A";
+                                if (rp.re.f1[y] != null)
+                                {
+                                    url1 = await UploadFile(rp.re.f1[y].GetStream(), rp.re.movimientos[y].fotomov1);
 
+                                }
+                                if (rp.re.f2[y] != null)
+                                {
+                                    url2 = await UploadFile(rp.re.f2[y].GetStream(), rp.re.movimientos[y].fotomov2);
+
+                                }
+
+                                rp.re.movimientos[y].fotomov1 = url1;
+                                rp.re.movimientos[y].fotomov2 = url2;
 
                                 var statusmove =await  MovementService.postmovement(JsonConvert.SerializeObject(rp.re.movimientos[y]));
 
@@ -179,11 +195,7 @@ namespace Inventario2
                                 }
 
                           
-                                v = true;
-                                if (rp.re.f1[y] != null)
-                                    UploadFile(rp.re.f1[y].GetStream(), rp.re.movimientos[y].fotomov1);
-                                if (rp.re.f2[y] != null)
-                                    UploadFile(rp.re.f2[y].GetStream(), rp.re.movimientos[y].fotomov2);
+                                
 
                             }
                             catch (MobileServiceInvalidOperationException ms)
@@ -229,11 +241,11 @@ namespace Inventario2
 
         }
 
-        private async void UploadFile(Stream stream, string PathFoto)
+        private async Task<string> UploadFile(Stream stream, string PathFoto)
         {
             try
             {
-                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=fotosavs;AccountKey=kS7YxHQSBtu6kDpa2sG7OVidbxcJq1Dip7+KnNjQA5SHn9N7loT2/Ul9HkdN0R5UPDWeKy0WpWQprGgnjIrbdA==;EndpointSuffix=core.windows.net");
+                var account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=inventarioavs;AccountKey=wO8R0xJGc9+VleJHkKEL2AHLmZOEUvLcZg0M1KaMNI2lB9Jd27SShyHhlgeCGEQLOs7SCgYffIx4OI6TBABFPg==;EndpointSuffix=core.windows.net");
                 var client = account.CreateCloudBlobClient();
                 var container = client.GetContainerReference("fotossalida");
                 await container.CreateIfNotExistsAsync();
@@ -241,10 +253,11 @@ namespace Inventario2
                 var block = container.GetBlockBlobReference($"{PathFoto}");
                 await block.UploadFromStreamAsync(stream);
                 string url = block.Uri.OriginalString;
+                return url;
             }
             catch
             {
-
+                return "N/A";
             }
 
             

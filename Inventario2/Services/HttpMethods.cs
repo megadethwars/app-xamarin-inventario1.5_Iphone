@@ -99,7 +99,7 @@ namespace Inventario2.Services
 
 
 
-        static async Task<StatusMessage> delete(string url)
+        public static async Task<StatusMessage> delete(string url)
         {
 
             try

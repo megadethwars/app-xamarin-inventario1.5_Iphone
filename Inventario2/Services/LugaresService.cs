@@ -40,7 +40,7 @@ namespace Inventario2.Services
 
         public static async Task<List<ModelLugares>> getlugar(int id)
         {
-            var status = await HttpMethods.get(Global.url + "roles/" + $"{id}");
+            var status = await HttpMethods.get(Global.url + "lugares/" + $"{id}");
             if (status.statuscode == 200 || status.statuscode == 201)
             {
                 var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelLugares>>(status.message);
@@ -67,14 +67,14 @@ namespace Inventario2.Services
 
         public static async Task<StatusMessage> putlugar(int id, string objeto)
         {
-            var status = await HttpMethods.put(Global.url + "putrole/" + $"{id}", objeto);
+            var status = await HttpMethods.put(Global.url + "putlugar/" + $"{id}", objeto);
             return status;
         }
 
 
         public static async Task<StatusMessage> postlugar(string objeto)
         {
-            var status = await HttpMethods.Post(Global.url + "postRole", objeto);
+            var status = await HttpMethods.Post(Global.url + "postlugar", objeto);
             return status;
         }
     }

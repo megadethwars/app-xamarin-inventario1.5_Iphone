@@ -7,6 +7,8 @@ namespace Inventario2.Models
     public class ModelUser : IDisposable
     {
         public int ID { get; set; }
+
+        public string IDuser { get; set; }
         public string nombre { get; set; }
         public string apellido_paterno { get; set; }
         public string apellido_materno { get; set; }
