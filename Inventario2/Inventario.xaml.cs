@@ -117,7 +117,7 @@ namespace Inventario2
             var isNumeric = long.TryParse(cadena, out long n);
 
 
-            if (tipoBusqueda=="producto")
+            if (tipoBusqueda=="Nombre")
             {
                
                 var devices = await DeviceService.getdevicebyproduct(search.Text);
@@ -177,7 +177,7 @@ namespace Inventario2
                 }
 
             }
-            if (tipoBusqueda == "modelo")
+            if (tipoBusqueda == "Modelo")
             {
                 var devices = await DeviceService.getdevicebymodel(search.Text);
                 if (devices == null)
@@ -206,7 +206,7 @@ namespace Inventario2
             }
 
 
-            if (tipoBusqueda == "marca")
+            if (tipoBusqueda == "Marca")
             {
                 var devices = await DeviceService.getdevicebymarca(search.Text);
                 if (devices == null)
@@ -235,7 +235,7 @@ namespace Inventario2
             }
 
 
-            if (tipoBusqueda == "proveedor")
+            if (tipoBusqueda == "Proveedor")
             {
 
                 var devices = await DeviceService.getdevicebyprov(search.Text);
@@ -263,7 +263,7 @@ namespace Inventario2
                     postListView.ItemsSource = devices;
                 }
             }
-            if (tipoBusqueda == "serie")
+            if (tipoBusqueda == "Serie")
             {
 
                 var devices = await DeviceService.getdevicebyserie(search.Text);
