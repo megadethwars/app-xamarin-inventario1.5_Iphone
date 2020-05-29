@@ -7,7 +7,7 @@
              x:Class="Inventario2.Lugares">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="HOME"  Clicked="ToolbarItem_Clicked" />
-        <ToolbarItem Text="          " />
+        <ToolbarItem Text="                                  " />
 
         
 
@@ -20,7 +20,7 @@
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout Padding="35,0,35,20">
                 <StackLayout
-            Padding="17,20,17,0">
+            Padding="17,20,17,40">
                     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions/>
                         
@@ -38,7 +38,7 @@
                     </Grid>
                     <StackLayout >
                         <ScrollView>
-                            <ListView x:Name="postListView" ItemSelected="postListView_ItemSelected"  BackgroundColor="Gray" HeightRequest="100">
+                            <ListView x:Name="postListView" ItemSelected="postListView_ItemSelected"  BackgroundColor="Gray" HeightRequest="250">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
