@@ -294,6 +294,20 @@ namespace Inventario2.Services
         }
 
 
+        public static async Task<StatusMessage> deleteDevice(int id)
+        {
+            try
+            {
+                var status = await HttpMethods.delete(Global.url + "deldevice/" + $"{id}");
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         public static async Task<StatusMessage> putdevice(int id1, string objeto)
         {
             try
@@ -323,6 +337,54 @@ namespace Inventario2.Services
             }
 
             
+        }
+
+
+        public static async Task<StatusMessage> VerifyDevicesPlaces(string objeto)
+        {
+            try
+            {
+                var status = await HttpMethods.Post(Global.url + "validatesamedevices", objeto);
+                return status;
+            }
+            catch
+            {
+                return null;
+            }
+
+
+        }
+
+
+        public static async Task<List<ModelDevice>> getmissingdevices(string id)
+        {
+            try
+            {
+                var status = await HttpMethods.get(Global.url + "missingdevices/" + $"{id}");
+                if (status.statuscode == 200 || status.statuscode == 201)
+                {
+                    var list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ModelDevice>>(status.message);
+                    foreach (ModelDevice usuario in list)
+                    {
+                        usuario.statuscode = status.statuscode;
+                    }
+                    return list;
+                }
+                else
+                {
+                    List<ModelDevice> listerror = new List<ModelDevice>();
+                    listerror.Add(new ModelDevice());
+
+                    listerror[0].message = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusMessage>(status.message).message;
+                    listerror[0].statuscode = status.statuscode;
+                    return listerror;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
     }

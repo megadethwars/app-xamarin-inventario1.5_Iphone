@@ -193,12 +193,13 @@ namespace Inventario2
             //Declarada en inventario Principal
         }
 
-        private void Llenar(ModelDevice device)
+        public void Llenar(ModelDevice device)
         {
-            ModelMovements moves = new ModelMovements {
-                
-                
-                
+            ModelMovements moves = new ModelMovements
+            {
+
+
+
                 //fecha = DateTime.Now.ToString("dd/MM/yyyy")
             };
 
@@ -212,12 +213,27 @@ namespace Inventario2
             moves.serie = device.serie;
             moves.modelo = device.modelo;
             moves.codigo = device.codigo;
-            movimientos.Add(moves);
+            Boolean s = true;
+            for (int x = 0; x < movimientos.Count; x++)
+            {
 
-            
-            f2.Add(f);
-            f1.Add(f);
-            f = null;
+                if (movimientos[x].codigo == moves.codigo)
+                {
+                    DisplayAlert("Error", "El producto ya esta agregado", "Aceptar");
+                    s = false;
+                    break;
+                }
+
+            }
+            if (s == true)
+            {
+                movimientos.Add(moves);
+
+
+                f2.Add(f);
+                f1.Add(f);
+                f = null;
+            }
         }
 
 

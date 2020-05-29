@@ -74,7 +74,7 @@ namespace Inventario2
 
                             if (usuarios == null)
                             {
-                                await DisplayAlert("Error", "Error de conexion con el servidor", "Aceptar");
+                                await DisplayAlert("Error", "Error de aconexion con el servidor", "Aceptar");
 
                                 return;
                             }
@@ -103,7 +103,7 @@ namespace Inventario2
              catch(Exception ex)
              {
                 Console.WriteLine(ex.Message);
-                 await DisplayAlert("Error", "Error de Conexion con el Servidor", "Aceptar");
+                 await DisplayAlert("Error", "Erreor de Conexion con el Servidor", "Aceptar");
              }
 
              

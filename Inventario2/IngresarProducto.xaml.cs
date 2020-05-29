@@ -178,7 +178,7 @@ namespace Inventario2
             //Declarada en inventario Principal
         }
 
-        private void Llenar(ModelDevice dev)
+        public void Llenar(ModelDevice dev)
         {
             ModelMovements moves = new ModelMovements
             {
@@ -195,11 +195,27 @@ namespace Inventario2
             moves.serie = dev.serie;
             moves.modelo = dev.modelo;
             moves.codigo = dev.codigo;
-            movimientos.Add(moves);
+            Boolean s = true;
+            for (int x = 0; x < movimientos.Count; x++)
+            {
 
-            f1.Add(f);
-            f2.Add(f);
-            f = null;
+                if (movimientos[x].codigo == moves.codigo)
+                {
+                    DisplayAlert("Error", "El producto ya esta agregado", "Aceptar");
+                    s = false;
+                    break;
+                }
+
+            }
+            if (s == true)
+            {
+                movimientos.Add(moves);
+
+
+                f2.Add(f);
+                f1.Add(f);
+                f = null;
+            }
         }
 
 

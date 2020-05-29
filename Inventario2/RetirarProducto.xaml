@@ -49,8 +49,8 @@
                         <SearchBar
                     x:Name="search"
                     BackgroundColor="Gray"
-                    PlaceholderColor="White"
-                    TextColor="White"
+                    PlaceholderColor="Black"
+                    TextColor="Black"
 			        Placeholder="Buscar por nombre o ID"
 			        CancelButtonColor="Red"
 			        SearchButtonPressed="SearchBar" />

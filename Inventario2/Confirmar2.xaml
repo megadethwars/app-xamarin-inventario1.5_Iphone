@@ -21,9 +21,9 @@
         <StackLayout
 		AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <StackLayout
-		Padding="60,20,60,20">
+		Padding="60,20,60,50">
                 <StackLayout
-            Padding="0,20,0,200">
+            Padding="0,20,0,50">
                     <Grid ColumnSpacing="0" HorizontalOptions="Center">
                         <Grid.ColumnDefinitions Width = "100"/>
                         <Image Source="tache.png" HorizontalOptions="End" HeightRequest="45" WidthRequest="45"/>
@@ -41,12 +41,13 @@
 
 
                 </StackLayout>
-                <StackLayout VerticalOptions="Center"
+                <ScrollView>
+                <StackLayout 
                              HorizontalOptions="Center">
 
                     <StackLayout
                 HorizontalOptions="CenterAndExpand" 
-                VerticalOptions="CenterAndExpand" >
+                 >
                         <Label Text="Usuario"
                                FontFamily="Montserrat-Bold"
                        TextColor="White"
@@ -71,10 +72,55 @@
                         TextColor="Red"
                         ImageSource="baceptar.png"></Button>
                     </StackLayout>
+                    <ScrollView Orientation="Horizontal">
+                    <ScrollView
+			HorizontalOptions="FillAndExpand"
+                    
+            VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView x:Name="postListView"  BackgroundColor="Gray" HeightRequest="200">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
 
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="120"/>
+
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding producto}" TextColor="White" Grid.Column="0"/>
+                                                <Label Text="{Binding marca}" TextColor="White"
+                                               Grid.Column="1"/>
+                                                <Label Text="{Binding codigo}" TextColor="White" Grid.Column="2"/>
+                                                <Label Text="{Binding modelo}" TextColor="White" Grid.Column="3"/>
+                                                <Label Text="{Binding serie}" TextColor="White" Grid.Column="4"/>
+                                                <Label Text="{Binding origen}" TextColor="White" Grid.Column="5"/>
+                                                <Label Text="{Binding pertenece}" TextColor="White" Grid.Column="6"/>
+                                                <Label Text="{Binding lugar}" TextColor="White" Grid.Column="7"/>
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+                        </ScrollView>
 
 
                 </StackLayout>
+                    </ScrollView>
+                    
             </StackLayout>
         </StackLayout>
     </AbsoluteLayout>

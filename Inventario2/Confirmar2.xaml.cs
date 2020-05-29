@@ -18,33 +18,29 @@ namespace Inventario2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Confirmar2 : ContentPage
     {
-        string p;
+        string uid;
         public Carrito2 rp;
         private ModelDevice CurrentDevice;
         private bool isToggled;
         private ModelUser usuarioentrada;
         public int idlugar;
         private GeneratePDF pdf;
+        private string CUrrentIDmovimiento="";
         public Confirmar2(Carrito2 x)
         {
             pdf = new GeneratePDF();
             CurrentDevice = new ModelDevice();
             InitializeComponent();
             rp = x;
-            p = Guid.NewGuid().ToString("D");
+            uid = Guid.NewGuid().ToString("D");
         }
-
 
         protected override  void OnAppearing()
         {
             base.OnAppearing();
-
             
-
         }
-
-
-     
+   
         private async Task<bool> verifyuser(string user, string password)
         {
             LoginUser logus = new LoginUser();
@@ -100,10 +96,6 @@ namespace Inventario2
         }
 
 
-
-
-
-
         private async void Button_Clicked(object sender, EventArgs e)
         {
             if (!isToggled)
@@ -116,25 +108,39 @@ namespace Inventario2
 
 
                     //var usuarios = await App.MobileService.GetTable<Usuario>().Where(u => u.nombre == Usuario.Text).ToListAsync();
-
+                    
 
                     if (status)
                     {
                         isToggled = true;
                         password = true;
 
-                        await UpdateLocations(rp.re.movimientos, 1);
+                        bool statusbatchdevice = await VerifyDevicePlace(rp.re.movimientos);
+
+                        if (!statusbatchdevice)
+                        {
+                            return;
+
+                        }
+
+                        bool res = await UpdateLocations(rp.re.movimientos, 1);
+
+                        if (!res){
+                            return;
+                        }
+
+
 
                         for (int y = 0; y < rp.re.movimientos.Count(); y++)
                         {
                             try
                             {
-                                rp.re.movimientos[y].IDmovimiento = p;
+                                rp.re.movimientos[y].IDmovimiento = uid;
                                 rp.re.movimientos[y].IDtipomov = 1;
                                 rp.re.movimientos[y].IDusuario = usuarioentrada.ID;
                                 rp.re.movimientos[y].IDlugar = 1;
-                                rp.re.movimientos[y].fotomov1 = p.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
-                                rp.re.movimientos[y].fotomov2 = p.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
+                                rp.re.movimientos[y].fotomov1 = uid.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
+                                rp.re.movimientos[y].fotomov2 = uid.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
 
 
 
@@ -180,10 +186,27 @@ namespace Inventario2
                             rp.re.movimientos.Clear();
                             rp.re.f1.Clear();
                             rp.re.f2.Clear();
+                            
                             await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
+                            var tablemissing = await SearchMissing(CUrrentIDmovimiento);
+                            if(tablemissing != null)
+                            {
+                                if (tablemissing.Count != 0)
+                                {
+                                    postListView.ItemsSource = tablemissing;
+                                }
+                                    
+                                
+                            }
+
                             //await Navigation.PushAsync(new PDFMovement(p));
-                            await pdf.InitPDFAsync(p);
-                            ToolbarItem_Clicked(null, null);
+                            await pdf.InitPDFAsync(uid);
+
+                            if (tablemissing == null)
+                            {
+                                ToolbarItem_Clicked(null, null);
+                            }
+                            
                             //await Navigation.PopAsync();
                         }
 
@@ -208,6 +231,10 @@ namespace Inventario2
 
         }
 
+        private void On_home(object sender,EventArgs e)
+        {
+            ToolbarItem_Clicked(null, null);
+        }
         private async void UploadFile(Stream stream, string PathFoto)
         {
             try
@@ -249,7 +276,145 @@ namespace Inventario2
             Navigation.PopAsync();
         }
 
-        private async Task UpdateLocations(List<ModelMovements> movimientos, int lugar)
+        private async Task<bool> VerifyDevicePlace(List<ModelMovements> movimientos)
+        {
+            try
+            {
+                int cont = 0;
+                
+                IDictionary<string, string> verifydevices = new Dictionary<string, string>();
+                foreach (ModelMovements movimiento in movimientos)
+                {
+                    var tabladevice = await DeviceService.getdevicebyid(movimiento.IDdevice);
+
+                    if (tabladevice == null)
+                    {
+                        await DisplayAlert("Error", "error de conexion", "Aceptar");
+                        return false;
+                
+                    }
+
+                    if (tabladevice[0].statuscode == 500)
+                    {
+                        await DisplayAlert("Error", "error interno del servidor", "Aceptar");
+                        return false;
+                     
+                    }
+
+                    if (tabladevice[0].statuscode == 401)
+                    {
+                        await DisplayAlert("Error", "bad request", "Aceptar");
+                        return false;
+
+                    }
+
+                    if (tabladevice[0].statuscode == 409)
+                    {
+                        await DisplayAlert("Error", "Los dipositivos no pertenecen a la misma orden", "Aceptar");
+                        return false;
+
+                    }
+
+                    if (tabladevice[0].statuscode == 200 || tabladevice[0].statuscode == 201)
+                    {
+                        cont++;
+                        verifydevices.Add("ID"+ $"{cont}",movimiento.IDdevice.ToString() );
+                        CUrrentIDmovimiento = tabladevice[0].IDmov;
+                    }
+
+                }
+
+                var status = await DeviceService.VerifyDevicesPlaces(JsonConvert.SerializeObject(verifydevices));
+
+                if (status == null)
+                {
+                    return false;
+                }
+
+                if(status.statuscode == 500)
+                {
+                    return false;
+                }
+
+                if (status.statuscode == 404)
+                {
+                    return false;
+                }
+
+                if (status.statuscode == 401)
+                {
+                    return false;
+                }
+
+                if (status.statuscode == 409)
+                {
+                    return false;
+                }
+
+
+                if (status.statuscode == 201)
+                {
+                    
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        
+        }
+
+
+        private async  Task<List<ModelDevice>> SearchMissing(string idmovimiento)
+        {
+            try
+            {
+                var tabladevice = await DeviceService.getmissingdevices(idmovimiento);
+
+                if (tabladevice == null)
+                {
+                    return null;
+
+                }
+
+                if (tabladevice[0].statuscode == 500)
+                {
+                    return null;
+
+                }
+
+                if (tabladevice[0].statuscode == 401)
+                {
+                    return null;
+
+                }
+
+                if (tabladevice[0].statuscode == 404)
+                {
+                    return null;
+
+                }
+
+                if (tabladevice[0].statuscode == 200)
+                {
+                    await DisplayAlert("Informe", "Productos pendientes por dar entrada", "Aceptar");
+
+                    return tabladevice;
+                }
+
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+
+           
+        }
+
+        private async Task<bool> UpdateLocations(List<ModelMovements> movimientos, int lugar)
         {
             foreach (ModelMovements movimiento in movimientos)
             {
@@ -259,19 +424,22 @@ namespace Inventario2
 
                     if (tabladevice == null)
                     {
-                        break;
+                        return false;
+                      
                     }
 
                     if (tabladevice[0].statuscode == 200)
                     {
                         CurrentDevice = tabladevice[0];
                         CurrentDevice.IDlugar = lugar;
+                        CurrentDevice.IDmov = uid;
                         //update
 
                         var status = await DeviceService.putdevice(CurrentDevice.ID, JsonConvert.SerializeObject(CurrentDevice));
 
                         if (status == null)
                         {
+                            return false;
                             break;
                         }
                     }
@@ -282,10 +450,13 @@ namespace Inventario2
                 }
                 catch
                 {
-
+                    return false;
                 }
             }
+
+            return true;
         }
 
+        
     }
 }

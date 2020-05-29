@@ -44,9 +44,9 @@
 			        Placeholder="Buscar"
 			        CancelButtonColor="Red"
                     BackgroundColor="Gray"
-                    PlaceholderColor="White"
+                    PlaceholderColor="Black"
                     TextChanged="search_TextChanged"
-                    TextColor="White"
+                    TextColor="Black"
 			        SearchButtonPressed="SearchBar" />
 
                 <!--<Grid

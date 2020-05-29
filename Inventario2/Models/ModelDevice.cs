@@ -47,5 +47,8 @@ namespace Inventario2.Models
 
         public int statuscode { get; set; }
 
+
+        public string IDmov { get; set; }
+
     }
 }

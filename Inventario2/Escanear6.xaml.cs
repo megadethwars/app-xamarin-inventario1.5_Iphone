@@ -60,52 +60,41 @@ namespace Inventario2
         }
         public async void buscar(string qr)
         {
-            //users1 = await App.MobileService.GetTable<InventDB>().Where(u => u.codigo == qr).ToListAsync();
-
             var devices = await DeviceService.getdevicebycode(qr);
-
             if (devices == null)
             {
+
+                await DisplayAlert("Buscando", "error de conexion con el servidor", "OK");
                 return;
             }
 
             if (devices[0].statuscode == 500)
             {
+                await DisplayAlert("Buscando", "error interno del servidor", "OK");
                 return;
             }
 
             if (devices[0].statuscode == 404)
             {
+                await DisplayAlert("Buscando", "producto no encontrado", "OK");
                 return;
             }
 
-            if (devices[0].statuscode == 200)
+            if (devices[0].statuscode == 200 || devices[0].statuscode == 201)
             {
-                ModelMovements mv1 = new ModelMovements
+                Movimientos moves = new Movimientos
                 {
-                    ID = "",
-                    observacionesMov = "Ninguna",
-                    producto = devices[0].producto,
-                    marca = devices[0].marca,
-                    modelo = devices[0].modelo,
-                    IDdevice = devices[0].ID,
-                    codigo = devices[0].codigo,
-                    serie = devices[0].serie,
-                    cantidad = "1",
-                    fotomov1 = "",
-                    IDtipomov = 2,
-                    IDlugar = 1
-                    //fecha = DateTime.Now.ToString("dd/MM/yyyy")
                 };
-                h.movimientos.Add(mv1);
-                h.f1.Add(f);
-                h.f2.Add(f);
+                h.Llenar(devices[0]);
                 DependencyService.Get<IMessage>().ShortAlert(qr);
             }
 
-            
-            
-            
+            else
+                DependencyService.Get<IMessage>().ShortAlert("Producto no Encontrado");
+
+
+
+
         }
 
         protected override void OnAppearing()

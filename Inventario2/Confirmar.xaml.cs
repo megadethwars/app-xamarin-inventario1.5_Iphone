@@ -12,13 +12,17 @@ using Inventario2.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
+using ZXing.QrCode;
+using ZXing.Net.Mobile.Forms;
+using ZXing;
+using System.Drawing;
 
 namespace Inventario2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Confirmar : ContentPage
     {
-        string p;
+        string uid;
         public Carrito rp;
         private GeneratePDF pdf;
         //private InventDB CurrentDevice;
@@ -31,15 +35,18 @@ namespace Inventario2
         {
             InitializeComponent();
             rp = x;
-            p = Guid.NewGuid().ToString("D");
+            uid = Guid.NewGuid().ToString("D");
             pdf = new GeneratePDF();
             CurrentDevice = new ModelDevice();
         }
-
+       
 
 
         protected override async void OnAppearing()
         {
+
+             
+
             base.OnAppearing();
 
             var lugares = await LugaresService.getlugares();
@@ -152,12 +159,12 @@ namespace Inventario2
                         {
                             try
                             {
-                                rp.re.movimientos[y].IDmovimiento = p;
+                                rp.re.movimientos[y].IDmovimiento = uid;
                                 rp.re.movimientos[y].IDtipomov = 2;
                                 rp.re.movimientos[y].IDusuario = usuariosalida.ID;
                                 rp.re.movimientos[y].IDlugar = idlugar;
-                                rp.re.movimientos[y].fotomov1 = p.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
-                                rp.re.movimientos[y].fotomov2 = p.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
+                                rp.re.movimientos[y].fotomov1 = uid.Substring(15) + rp.re.movimientos[y].codigo + ".jpg";
+                                rp.re.movimientos[y].fotomov2 = uid.Substring(10) + rp.re.movimientos[y].codigo + "2.jpg";
 
                                 v = true;
                                 string url1 = "N/A";
@@ -214,7 +221,7 @@ namespace Inventario2
                             rp.re.f2.Clear();
                             await DisplayAlert("Agregado", "Carrito Agregado correctamente", "Aceptar");
                             //await Navigation.PushAsync(new PDFMovement(p));
-                            await pdf.InitPDFAsync(p);
+                            await pdf.InitPDFAsync(uid);
                             ToolbarItem_Clicked(null, null);
                             //await Navigation.PopAsync();
                         }
@@ -300,6 +307,7 @@ namespace Inventario2
                     {
                         CurrentDevice = tabladevice[0];
                         CurrentDevice.IDlugar = lugar;
+                        CurrentDevice.IDmov = uid;
                         //update
 
                         var status = await DeviceService.putdevice(CurrentDevice.ID,JsonConvert.SerializeObject(CurrentDevice));

@@ -11,7 +11,7 @@ namespace Inventario2.Services
     public class UserService
     {
 
-        public static string url = "http://127.0.0.1:5000/";
+        //public static string url = "http://127.0.0.1:5000/";
         LoginUser loginuser = new LoginUser();
         public static async Task<StatusMessage> loginAsync(string objecto)
         {
