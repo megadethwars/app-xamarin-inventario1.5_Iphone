@@ -30,7 +30,7 @@ namespace Inventario2
         private void Informacion(object sender, EventArgs e)
 
         {
-            DisplayAlert("Informacion","Audio Video Solutions © 2020","OK");
+            DisplayAlert("Informacion","Audio Video Solutions © 2020 \n Version: 1.0.9","OK");
             //Informacion de la empresa, producto (app), fechas y version
         }
 
