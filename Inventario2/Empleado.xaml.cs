@@ -137,7 +137,7 @@ namespace Inventario2
 
         private void PostListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedPost = postListView.SelectedItem as Usuario;
+            var selectedPost = postListView.SelectedItem as ModelUser;
             if (selectedPost != null)
                 Navigation.PushAsync(new DetallesEmpleado(selectedPost));
         }
